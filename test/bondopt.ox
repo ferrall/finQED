@@ -59,10 +59,11 @@ bondopt_vasicek()
 }
 
 bondopt_menu(){
-    return {
-    {"Run All",0},
-    {"Black-Scholes",bondopt_black_scholes},
-    {"0-coupon Rendleman and Bartter",zero_coupon_call},
-    {"Vasicek",bondopt_vasicek}
-    };
+	decl m = new Menu("Bond Options",FALSE);
+	m->add(
+    	{"Black-Scholes",bondopt_black_scholes},
+    	{"0-coupon Rendleman and Bartter",zero_coupon_call},
+    	{"Vasicek",bondopt_vasicek}
+  		);
+	return m;
     }

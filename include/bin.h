@@ -1,4 +1,6 @@
-option_price_call_european_binomial(S, X, r, sigma, time, steps);
+set_parameters(inS, inX, inr, insigma, intime, insteps, individend_times, individend_yields, individend_amounts);
+
+option_price_call_european_binomial();
 option_price_put_european_binomial(S, X, r, sigma, time, steps);
 option_price_call_american_binomial(S, X, r, sigma, time, steps);
 option_price_put_american_binomial(S, X, r, sigma, time, steps);

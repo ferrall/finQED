@@ -1,7 +1,6 @@
 #import "finQED"
 
-black_scholes_price()
-{
+black_scholes_price() {
 	println("START testing Black Scholes price ");
 	decl spot = 58.507;
 	decl exercise = 60;
@@ -78,10 +77,10 @@ black_scholes_price_payout()
 }
 
 blackscholes_menu(){
-    return
-    {
-    {"Run All",0},
-    {black_scholes_price,"Price"},
-	{black_scholes_price_payout,"Payout"}
-    };
+	decl m = new Menu("Black-Scholes",FALSE);
+	m->add(
+    	{"Price",black_scholes_price},
+		{"Payout",black_scholes_price_payout}
+		);
+	return m;
     }

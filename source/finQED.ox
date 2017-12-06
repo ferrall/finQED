@@ -14,6 +14,7 @@
 #include "bin/am_put.ox"
 #include "bin/eur_call.ox"
 #include "bin/eur_put.ox"
+#include "bin/set_parameters.ox"
 #include "blackscholes/call.ox"
 #include "blackscholes/call_amdiv.ox"
 #include "blackscholes/call_div.ox"

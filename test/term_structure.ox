@@ -63,15 +63,16 @@ interpolated() {
 }
 
 termstruc_menu (){
-    return     {
-    {"Run All",0},
-    {"Transforms",transforms},
-    {"Interpolated",interpolated},
-    {"Spline ",ts_spline},
-    {"Bliss",bliss},
-    {"Nelson-Siegel",nelson_siegel},
-    {"Vasicek",vasicek},
-    {"CIR ",cir},
-    {"Estimated CIR",esti_cir}
-    };
+	decl m = new Menu("Term Structure",FALSE);
+	m->add(
+    	{"Transforms",transforms},
+    	{"Interpolated",interpolated},
+    	{"Spline ",ts_spline},
+    	{"Bliss",bliss},
+    	{"Nelson-Siegel",nelson_siegel},
+    	{"Vasicek",vasicek},
+    	{"CIR ",cir},
+    	{"Estimated CIR",esti_cir}
+		);
+	return m;
     }

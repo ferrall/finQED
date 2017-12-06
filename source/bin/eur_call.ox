@@ -3,17 +3,15 @@
 // calculate the binomial option pricing formula for an european call
 
 #include <oxstd.h>
+#include "../../include/bin.h"
+#import "set_parameters.ox"
 
-option_price_call_european_binomial(S,     // spot price
-								     X,     // exercice price
-								     r,     // interest rate
-								     sigma, // volatility
-								     t,     // time to maturity
-								     steps) // no steps in binomial tree
+option_price_call_european_binomial() // no steps in binomial tree
 {
-    decl R = exp(r*(t/steps));            // interest rate for each step
+
+    decl R = exp(r*(time/steps));            // interest rate for each step
     decl Rinv = 1.0/R;                    // inverse of interest rate
-    decl u = exp(sigma*sqrt(t/steps));    // up movement
+    decl u = exp(sigma*sqrt(time/steps));    // up movement
     decl uu = u*u;
     decl d = 1.0/u;
     decl p_up = (R-d)/(u-d);

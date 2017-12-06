@@ -89,11 +89,11 @@ simulate_general()
 
 
 simulate_menu (){
-    return
-    {
-  {"Run All",0},
-  {"Pricing ",simulate_pricing},
-  {"Deltas ",simulate_deltas},
-  {"General",simulate_general}
-    };
+	decl m = new Menu("Black-Scholes",FALSE);
+	m->add(
+  		{"Pricing ",simulate_pricing},
+  		{"Deltas ",simulate_deltas},
+  		{"General",simulate_general}
+		);
+	return m;
     }
