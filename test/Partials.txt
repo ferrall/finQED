@@ -1,4 +1,4 @@
-Output of Partials
+Output of binomial:Partials
 ---------------------------
 START testing binomial partials 
  american call delta = 0.699792
@@ -7,16 +7,13 @@ CALL price partials
  Delta = 0.699792
  gamma = 0.0140407
  theta = -9.89067
- vega  = 34.8536
- rho   = 56.9652
+ vega  = 0
+ rho   = 0
 PUT price partials
  Delta = -0.387636
  gamma = 0.0209086
  theta = -1.99027
- vega  = 35.3943
- rho   = -21.5433
+ vega  = 0
+ rho   = 0
 DONE testing binomial partials 
 ... finished.
-[00] Run All
-[01] Pricing
-[02] Partials

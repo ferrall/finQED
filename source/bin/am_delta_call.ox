@@ -1,19 +1,11 @@
-// file bin_am_delta_call.cc
-// author Bernt Arne Oedegaard
+//#include "bin.h"
 
-#include <oxstd.h>
 
-option_price_delta_american_call_binomial(
-						 S,
-						 X,
-						 r,
-						 sigma,
-						 t,
-						steps) // steps in binomial
+option_price_delta_american_call_binomial() // steps in binomial
 {
-    decl R = exp(r*(t/steps));            // interest rate for each step
+    decl R = exp(r*(time/steps));            // interest rate for each step
     decl Rinv = 1.0/R;                    // inverse of interest rate
-    decl u = exp(sigma*sqrt(t/steps));    // up movement
+    decl u = exp(sigma*sqrt(time/steps));    // up movement
     decl uu = u*u;
     decl d = 1.0/u;
     decl p_up = (R-d)/(u-d);

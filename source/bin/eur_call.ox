@@ -1,10 +1,4 @@
-// file bin_eur_call.cc
-// author: Bernt A Oedegaard
-// calculate the binomial option pricing formula for an european call
-
-#include <oxstd.h>
-#include "../../include/bin.h"
-#import "set_parameters.ox"
+//#include "bin.h"
 
 option_price_call_european_binomial() // no steps in binomial tree
 {

@@ -1,12 +1,6 @@
-#include "../../include/finQED.h"
+//#include "bin.h"
 
-option_price_partials_american_call_binomial(
-						 S,  		// spot price
-						 X,  		// Exercise price,
-						 r,     	// interest rate
-						 sigma, 	// volatility
-						 time,  	// time to maturity
-						 steps, 	// steps in binomial
+option_price_partials_american_call_binomial( 
 						delta, 	//  out: partial wrt S
 						gamma, 	//  out: second prt wrt S
 						theta, 	// out: partial wrt time
@@ -56,10 +50,14 @@ option_price_partials_american_call_binomial(
     theta[0] = (f21-f00) / (2*delta_t);
     decl diff = 0.02;
     decl tmp_sigma = sigma+diff;
-    decl tmp_prices = option_price_call_american_binomial(S,X,r,tmp_sigma,time,steps);
+    decl tmp_prices = option_price_call_american_binomial(
+	//S,X,r,tmp_sigma,time,steps
+	);
     vega[0] = (tmp_prices-f00)/diff;
     diff = 0.05;
     decl tmp_r = r+diff;
-    tmp_prices = option_price_call_american_binomial(S,X,tmp_r,sigma,time,steps);
+    tmp_prices = option_price_call_american_binomial(
+	//S,X,tmp_r,sigma,time,steps
+	);
     rho[0] = (tmp_prices-f00)/diff;
 }

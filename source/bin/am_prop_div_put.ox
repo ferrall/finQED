@@ -1,11 +1,11 @@
-#include "../../include/finQED.h"
+//#include "bin.h"
 
-option_price_put_american_proportional_dividends_binomial(S,	 X,	 r,	 sigma,	 time,	 steps,	dividend_times, dividend_yields)
+option_price_put_american_proportional_dividends_binomial()
 {
 	// given a dividend yield, the binomial tree recombines
     decl no_dividends=sizerc(dividend_times);
     if (no_dividends == 0)               // just take the regular binomial
-       return option_price_put_american_binomial(S,X,r,sigma,time,steps);
+       return option_price_put_american_binomial();
 
 	decl R = exp(r*(time/steps));
     decl Rinv = 1.0/R;

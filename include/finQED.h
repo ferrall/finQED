@@ -8,7 +8,9 @@ const decl FNR_MAXIT   =   500;
 
 #include "cflow.h"
 #include "blackscholes.h"
-#include "bin.h"
+
+//#include "bin.h"
+
 #include "findiff.h"
 #include "simulate.h"
 
