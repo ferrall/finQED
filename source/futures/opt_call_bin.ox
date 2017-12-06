@@ -3,11 +3,10 @@
 
 #include <oxstd.h>
 
-futures_option_price_call_american_binomial(
-    decl F, decl X, decl r, decl sigma, decl time, decl no_steps) {
-   decl futures_prices = zeros(1,no_steps+1);
-   decl call_values = zeros(1,no_steps+1);
-   decl t_delta= time/no_steps;
+futures_option_price_call_american_binomial(F,X,r,sigma,time,no_steps) {
+    decl futures_prices = zeros(1,no_steps+1);
+    decl call_values = zeros(1,no_steps+1);
+    decl t_delta= time/no_steps;
    decl Rinv = exp(-r*(t_delta));
    decl u = exp(sigma*sqrt(t_delta));
    decl d = 1.0/u;

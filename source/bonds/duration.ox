@@ -3,9 +3,9 @@
 
 #include <oxstd.h>
 
-bonds_duration(const cashflow_times, const cashflows, const r) 
+bonds_duration(cashflow_times,cashflows,r)
 {
-	// calculate the duration of a bond, simple case where the term 
+	// calculate the duration of a bond, simple case where the term
 	// structure is flat, interest rate r.
 	decl t = vec(cashflows) .* exp(-r .* vec(cashflow_times));
 	return double(sumc(t .* vec(cashflow_times)) / sumc(t));

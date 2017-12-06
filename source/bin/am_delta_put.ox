@@ -2,12 +2,12 @@
 #include <oxstd.h>
 
 option_price_delta_american_put_binomial(
-						decl S,  	// spot price 
-						decl X,  	// Exercise price,
-						decl r,     // interest rate
-						decl sigma, // volatility
-						decl t,  	// time to maturity
-						decl steps) // steps in binomial
+						 S,  	// spot price
+						 X,  	// Exercise price,
+						 r,     // interest rate
+						 sigma, // volatility
+						 t,  	// time to maturity
+						 steps) // steps in binomial
 {
     decl R = exp(r*(t/steps));            // interest rate for each step
     decl Rinv = 1.0/R;                    // inverse of interest rate
@@ -20,7 +20,7 @@ option_price_delta_american_put_binomial(
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
 	prices = cumprod(prices)';
-	decl put_values = X - prices .> 0 .? X - prices .: 0; 
+	decl put_values = X - prices .> 0 .? X - prices .: 0;
 
 	for (decl step=steps-1; step>=1; --step)
 	{

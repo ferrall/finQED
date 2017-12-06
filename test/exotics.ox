@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_exotics()
+exotics()
 {
     println("START testing analytical lookback ");
     decl S=100;
@@ -15,8 +14,4 @@ test_exotics()
     println(" put ",
 		exotics_lookback_european_put(S,Smin,r,q,sigma,time));
     println("DONE testing analytical lookback ");
-}
-main()
-{
-	test_exotics();
 }

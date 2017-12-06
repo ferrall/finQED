@@ -1,8 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_cash_flow()
-{
+cash_flow() {
 	println("START testing cash flow algoritms ");
   	decl times = <1,2>;
 	decl amounts = <-100, 110.51709>;
@@ -36,8 +34,4 @@ test_cash_flow()
 	println(" irr unique (?) ", cash_flow_unique_irr(times,amounts));
 	println(" irr: ", cash_flow_irr(times,amounts));
 	println("DONE testing cash flow algorithms");
-}
-main()
-{
-	test_cash_flow();
 }

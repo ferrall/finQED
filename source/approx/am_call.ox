@@ -1,17 +1,6 @@
-// file approx_am_call.cc
-// author: Bernt Arne Oedegaard
-// implements the quadratic approximation of Barone-Adesi and Whaley
-// described in Journal of Finance, june 87.
+#include "../../include/finQED.h"
 
-#include <oxstd.h>
-#include "financialNR.h"         // define other option pricing formulas
-
-option_price_american_call_approximated_baw( decl S,
-						    decl X,
-						    decl r,
-						    decl b,
-						    decl sigma,
-						    decl time)
+option_price_american_call_approximated_baw( S,X,r,b,sigma,time)
 {
     decl sigma_sqr = sigma*sigma;
     decl time_sqrt = sqrt(time);

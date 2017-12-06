@@ -4,12 +4,12 @@
 #include <oxstd.h>
 
 option_price_delta_american_call_binomial(
-						decl S,
-						decl X,  
-						decl r,  
-						decl sigma,
-						decl t, 
-						decl steps) // steps in binomial
+						 S,
+						 X,
+						 r,
+						 sigma,
+						 t,
+						steps) // steps in binomial
 {
     decl R = exp(r*(t/steps));            // interest rate for each step
     decl Rinv = 1.0/R;                    // inverse of interest rate
@@ -22,8 +22,8 @@ option_price_delta_american_call_binomial(
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
 	prices = cumprod(prices)';
-	decl call_values = prices - X .> 0 .? prices - X .: 0; 
-    
+	decl call_values = prices - X .> 0 .? prices - X .: 0;
+
     for (decl step=steps-1; step>=1; --step)
 	{
 		call_values = (p_up * call_values[1 : step + 1] + p_down * call_values[ : step]) * Rinv;
@@ -32,4 +32,3 @@ option_price_delta_american_call_binomial(
     }
     return (call_values[1]-call_values[0])/(S*u-S*d);
 }
-

@@ -1,19 +1,6 @@
-// file bin_am_prop_div_put.cc
-// author: Bernt Arne Oedegaard
-// binomial option pricing adjusting for dividends.
+#include "../../include/finQED.h"
 
-#include <oxstd.h>
-#include "financialNR.h"
-
-option_price_put_american_proportional_dividends_binomial(
-	decl S,
-	decl X,
-	decl r,
-	decl sigma,
-	decl time,
-	decl steps,
-	const dividend_times,
-	const dividend_yields)
+option_price_put_american_proportional_dividends_binomial(S,	 X,	 r,	 sigma,	 time,	 steps,	dividend_times, dividend_yields)
 {
 	// given a dividend yield, the binomial tree recombines
     decl no_dividends=sizerc(dividend_times);

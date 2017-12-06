@@ -3,8 +3,8 @@
 
 #include <oxstd.h>
 
-futures_price(decl S,                     // value of underlying
-		     decl r,                     // risk free interest
-		     decl time_to_maturity) {
+futures_price(S,                     // value of underlying
+		      r,                     // risk free interest
+		      time_to_maturity) {
     return exp(r*time_to_maturity)*S;
 }

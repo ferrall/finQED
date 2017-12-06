@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_bonds()
+bonds()
 {
     println("START testing bond algoritms ");
     decl coupon_times = <1,2>;
@@ -31,8 +30,4 @@ test_bonds()
         bonds_convexity (cashflow_times, cashflows, y));
 
     println("DONE testing bonds ");
-}
-main()
-{
-	test_bonds();
 }

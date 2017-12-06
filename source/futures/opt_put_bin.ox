@@ -3,8 +3,7 @@
 
 #include <oxstd.h>
 
-futures_option_price_put_american_binomial(
-    decl F, decl X, decl r, decl sigma, decl time, decl no_steps){
+futures_option_price_put_american_binomial(F,X,r,sigma,  time,  no_steps){
    decl futures_prices = zeros(1,no_steps+1);
    decl put_values = zeros(1,no_steps+1);
    decl t_delta= time/no_steps;
@@ -17,7 +16,7 @@ futures_option_price_put_american_binomial(
    decl pDown = 1.0 - pUp;
    futures_prices[0] = F*pow(d, no_steps);
    decl i;
-   for (i=1; i<=no_steps; ++i) 
+   for (i=1; i<=no_steps; ++i)
       futures_prices[i] = uu*futures_prices[i-1]; // terminal tree nodes
    for (i=0; i<=no_steps; ++i) put_values[i] = max(0.0, (X-futures_prices[i]));
    for (decl step=no_steps-1; step>=0; --step) {

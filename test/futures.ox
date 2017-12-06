@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_futures()
+futures()
 {
   	println("START testing futures options etc ");
   	decl S=100;
@@ -21,8 +20,4 @@ test_futures()
     println(" put price, binomial american = ",
     	futures_option_price_put_american_binomial(F,X,r,sigma,time,nosteps));
   	println("DONE testing futures ");
-}
-main()
-{
-	test_futures();
 }

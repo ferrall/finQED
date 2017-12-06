@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_merton()
+merton()
 {
     decl S=100;
     decl X=100;
@@ -14,10 +13,4 @@ test_merton()
     println(" Merton's jump diffusion,  Call price = ",
 		option_price_call_merton_jump_diffusion(S,X,r,sigma,time,
 			lambda,kappa,delta));
-}
-main()
-{
-    println("START testing alternative formulas");
-    test_merton();
-    println("DONE testing alternative formulas");
 }

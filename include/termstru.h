@@ -1,0 +1,11 @@
+term_structure_yield_from_discount_factor(dfact, t);
+term_structure_discount_factor_from_yield(r, t);
+term_structure_forward_rate_from_disc_facts(d_t, d_T, time);
+term_structure_forward_rate_from_yields(r_t1, r_T, t1, T);
+term_structure_discount_factor_cubic_spline(t, b1, c1, d1, f, knots);
+term_structure_discount_factor_vasicek(time, r, a, b, sigma);
+term_structure_discount_factor_cir(t, r, kappa, lambda, theta, sigma);
+term_structure_discount_factor_estimated_cir(t, r, phi1, phi2, phi3);
+term_structure_yield_linearly_interpolated(time, obs_times, obs_yields);
+term_structure_yield_nelson_siegel(t, beta0, beta1, beta2, lambda);
+term_structure_yield_bliss(t, gamma0, gamma1, gamma2, lambda1, lambda2);

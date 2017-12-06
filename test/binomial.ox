@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_binomial_pricing()
+binomial_pricing()
 {
     println("START testing Binomial Pricing");
     decl spot = 100.0;
@@ -43,7 +42,7 @@ test_binomial_pricing()
 	    	dividend_times, dividend_amounts) );
     println("DONE testing binomial pricing ");
 }
-test_binomial_partials()
+binomial_partials()
 {
     println("START testing binomial partials ");
     decl S = 100.0;
@@ -75,8 +74,12 @@ test_binomial_partials()
     println(" rho   = ", rho);
     println("DONE testing binomial partials ");
 }
-main()
-{
-	test_binomial_pricing();
-	test_binomial_partials();
-}
+
+binomial_menu(){
+	decl m = new Menu("binomial",FALSE);
+	m->add(
+		{"Pricing",binomial_pricing},
+		{"Partials",binomial_partials}
+    	);
+	return m;
+    }

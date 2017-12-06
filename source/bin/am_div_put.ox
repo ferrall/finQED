@@ -1,24 +1,11 @@
-// file bin_am_div_put.cc
-// author: Bernt Arne Oedegaard
-// binomial option pricing adjusting for dividends.
+#include "../../include/finQED.h"
 
-#include <oxstd.h>
-#include "financialNR.h"
-
-option_price_put_american_discrete_dividends_binomial(
-								decl S,
-							    decl X,
-							    decl r,
-							    decl sigma,
-							    decl t,
-							    decl steps,
-							    const dividend_times,
-							    const dividend_amounts)
-// given an amount of dividend, the binomial tree does not recombine, have to
-// start a new tree at each ex-dividend date.
-// do this recursively, at each ex dividend date, at each step, put the
-// binomial formula starting at that point to calculate the value of the live
-// option, and compare that to the value of exercising now.
+/* given an amount of dividend, the binomial tree does not recombine, have to
+ start a new tree at each ex-dividend date.
+ do this recursively, at each ex dividend date, at each step, put the
+ binomial formula starting at that point to calculate the value of the live
+ option, and compare that to the value of exercising now.*/
+option_price_put_american_discrete_dividends_binomial(S,X,r,sigma,t,steps,dividend_times,dividend_amounts)
 {
     decl no_dividends = sizerc(dividend_times);
     if (no_dividends == 0)               // just take the regular binomial

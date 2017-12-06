@@ -1,12 +1,6 @@
-// file bondopt_call_coupon.cc
-// author: Bernt A Oedegaard.
+#include "../../include/finQED.h"
 
-#include <oxstd.h>
-#include "financialNR.h"
-
-bond_option_price_call_coupon_bond_black_scholes(
-   decl B, decl X, decl r, decl sigma, decl time,
-   const coupon_times, const coupon_amounts)
+bond_option_price_call_coupon_bond_black_scholes(B,X,r,sigma,time,coupon_times,coupon_amounts)
 {
 	// subtract present value of coupons
 	decl idx = vecindex(coupon_times .<= time);

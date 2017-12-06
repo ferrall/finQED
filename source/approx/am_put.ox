@@ -1,13 +1,11 @@
-// file: approx_am_put.cc
-#include <oxstd.h>
-#include "financialNR.h"          // define other option pricing formulas
+#include "../../include/finQED.h"          // define other option pricing formulas
 
-option_price_american_put_approximated_baw( decl S,
-						   decl X,
-						   decl r,
-						   decl b,
-						   decl sigma,
-						   decl time ){
+option_price_american_put_approximated_baw( S,
+						    X,
+						    r,
+						    b,
+						    sigma,
+						    time ){
     decl sigma_sqr = sigma*sigma;
     decl time_sqrt = sqrt(time);
     decl M=2.0*r/sigma_sqr;

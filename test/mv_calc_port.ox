@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_mv_calc_port()
+mv_calc_port()
 {
     println("START testing Mean variance portfolios ");
 	decl c = 4;
@@ -19,8 +18,4 @@ test_mv_calc_port()
 	println("mv_calculate_portfolio_given_mean_min_max_constraints:", x);
 
     println("DONE testing Mean variance portfolios");
-}
-main()
-{
-	test_mv_calc_port();
 }

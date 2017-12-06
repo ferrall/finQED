@@ -3,11 +3,9 @@
 
 #include <oxstd.h>
 
-term_structure_discount_factor_vasicek(decl time,
-					      decl r,
-				    decl a, decl b, decl sigma){
-    decl A,B;
-    decl sigma_sqr = sigma*sigma;
+term_structure_discount_factor_vasicek(time,r,a,b,sigma){
+     decl A,B;
+     decl sigma_sqr = sigma*sigma;
     decl aa = a*a;
     if (a==0.0){
 	B = time;

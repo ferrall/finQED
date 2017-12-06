@@ -1,16 +1,12 @@
-// file bondopt_call_vasicek.cc
-// author: Bernt A Oedegaard.
+#include "../../include/finQED.h"
 
-#include <oxstd.h>
-#include "financialNR.h"
-
-bond_option_price_call_zero_vasicek(decl X,  // exercise price
-					   decl r, // current interest rate
-					   decl option_time_to_maturity,
-					   decl bond_time_to_maturity,
-					   decl a,  // parameters
-					   decl b,
-					   decl sigma)
+bond_option_price_call_zero_vasicek(X,  // exercise price
+					    r, // current interest rate
+					    option_time_to_maturity,
+					    bond_time_to_maturity,
+					    a,  // parameters
+					    b,
+					    sigma)
 {
     decl T_t = option_time_to_maturity;
     decl s_t = bond_time_to_maturity;

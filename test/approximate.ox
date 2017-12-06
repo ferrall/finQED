@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-tst_quadratic_approximation()
+quadratic_approximation()
 {
     println("START testing quadratic approximation ");
     decl X = 100;
@@ -21,8 +20,4 @@ tst_geske_johnson()
     println("TESTING geske johnson american put approximation ");
     println(" not done ");
     println("DONE TESTING geske johnson american put approximation ");
-}
-main()
-{
-    tst_quadratic_approximation();
 }

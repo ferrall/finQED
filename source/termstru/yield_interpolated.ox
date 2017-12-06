@@ -1,14 +1,7 @@
-// file termstru_yield_interpolated.cc
-// author: Bernt A Oedegaard.
-// given a set of yields, produce a term structure by linear interpolation.
+#include "../../include/finQED.h"
 
-#include <oxstd.h>
-#include "financialNR.h"
-
-term_structure_yield_linearly_interpolated(decl time,
-						  const obs_times,
-						  const obs_yields)
 // assume the yields are in increasing time to maturity order.
+term_structure_yield_linearly_interpolated(time,obs_times,obs_yields)
 {
   decl no_obs = sizerc(obs_times);
   if (no_obs<1) return 0;

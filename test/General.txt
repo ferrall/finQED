@@ -1,0 +1,33 @@
+Output of General
+---------------------------
+START testing general simulations 
+ Black Scholes call price 10.4506   to be compared to 
+ simulated Black Scholes call 10.3309
+ Black Scholes put price 5.57353   to be compared to 
+ simulated Black Scholes put 5.50836
+ simulated arithmetic average  S= 100 r= 0.05 price=3.15669
+ simulated geometric average 3.62467
+ simulated geometric average, control variates 2.83798
+ simulated max  13.7922
+ simulated min 15.6288
+DONE testing general simulations 
+... finished.
+[00] Run All
+[01] Pricing 
+[02] Deltas 
+[03] General
+[00] Run All (excluding sub-options)
+[01] alt-formula: merton
+[02] quadratic approximation
+[03] binomial (sub options)
+[04] Black-Scholes
+[05] Bond Options (sub options)
+[06] Bonds
+[07] Cash Flow
+[08] Currency
+[09] Exotics
+[10] Finite Differences
+[11] Futures
+[12] Mean-Variance Portfolio
+[13] Simulation (sub options)
+[14] Term Structure (sub options)

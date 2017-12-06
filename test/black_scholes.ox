@@ -1,12 +1,10 @@
-#include <oxstd.h>
-#import "src/financialNR"
+#import "finQED"
 
-test_black_scholes_price()
-{
+black_scholes_price() {
 	println("START testing Black Scholes price ");
 	decl spot = 58.507;
 	decl exercise = 60;
-	decl r = 0.06; 
+	decl r = 0.06;
 	decl sigma = 0.35;
 	decl time_to_maturity=0.25;
 	println(" call price = ",
@@ -39,12 +37,13 @@ test_black_scholes_price()
 			spot, exercise, r, time_to_maturity, 3.80745));
 	println("DONE testing Black Scholes price ");
 }
-test_black_scholes_price_payout()
+
+black_scholes_price_payout()
 {
 	println("START testing Black Scholes price with payouts ");
 	decl spot = 100.0;
 	decl exercise = 100.0;
-	decl r = 0.1; 
+	decl r = 0.1;
 	decl sigma = 0.25;
 	decl time_to_maturity=1.0;
 	decl b=0.05;
@@ -76,8 +75,12 @@ test_black_scholes_price_payout()
 			time_to_maturity, D, time_to_dividend));
 	println("DONE testing Black Scholes price with payouts ");
 }
-main()
-{
-	test_black_scholes_price();
-	test_black_scholes_price_payout();
-}
+
+blackscholes_menu(){
+	decl m = new Menu("Black-Scholes",FALSE);
+	m->add(
+    	{"Price",black_scholes_price},
+		{"Payout",black_scholes_price_payout}
+		);
+	return m;
+    }

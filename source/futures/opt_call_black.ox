@@ -4,11 +4,11 @@
 #include <oxstd.h>                                 // mathematics library
 
 futures_option_price_call_european_black(
-   decl F,     // futures price
-   decl X,     // exercise price
-   decl r,     // interest rate
-   decl sigma, // volatility
-   decl time)   // time to maturity
+    F,     // futures price
+    X,     // exercise price
+    r,     // interest rate
+    sigma, // volatility
+    time)   // time to maturity
 {
     decl sigma_sqr = sigma*sigma;
     decl time_sqrt = sqrt(time);

@@ -3,9 +3,7 @@
 
 #include <oxstd.h>
 
-currency_option_price_call_american_binomial(
-    decl S, decl X, decl r, decl r_f, decl sigma, 
-    decl time, decl no_steps) {
+currency_option_price_call_american_binomial(S,X,r,r_f,sigma,time,no_steps) {
     decl exchange_rates = zeros(1,no_steps+1);
     decl call_values = zeros(1,no_steps+1);
     decl t_delta= time/no_steps;
@@ -13,7 +11,7 @@ currency_option_price_call_american_binomial(
     decl u = exp(sigma*sqrt(t_delta));
     decl d = 1.0/u;
     decl uu= u*u;
-    decl pUp   = (exp((r-r_f)*t_delta)-d)/(u-d); // adjust for foreign decl.rate 
+    decl pUp   = (exp((r-r_f)*t_delta)-d)/(u-d); // adjust for foreign decl.rate
     decl pDown = 1.0 - pUp;
     exchange_rates[0] = S*pow(d, no_steps);
     decl i;

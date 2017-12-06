@@ -1,21 +1,18 @@
-// file bin_am_partials_put.cc
-// author: Bernt A Odegaard
-
-#include <oxstd.h>
-#include "financialNR.h"
+#include "oxstd.h"
+#include "../../include/bin.h"
 
 option_price_partials_american_put_binomial(
-						decl S,  		// spot prices
-						decl X,  		// Exercise prices,
-						decl r,     	// interest rate
-						decl sigma, 	// volatility
-						decl time,  	// time to maturity
-						decl steps, 	// steps in binomial
-						decl delta, 	//  out: partial wrt S
-						decl gamma, 	//  out: second prt wrt S
-						decl theta, 	// out: partial wrt time
-						decl vega,  	//  out: partial wrt sigma
-						decl rho)   	// out: partial wrt r
+						 S,  		// spot prices
+						 X,  		// Exercise prices,
+						 r,     	// interest rate
+						 sigma, 	// volatility
+						 time,  	// time to maturity
+						 steps, 	// steps in binomial
+						delta, 	//  out: partial wrt S
+						gamma, 	//  out: second prt wrt S
+						theta, 	// out: partial wrt time
+						vega,  	//  out: partial wrt sigma
+						rho)   	// out: partial wrt r
 {
     decl delta_t =(time/steps);
     decl R = exp(r*delta_t);

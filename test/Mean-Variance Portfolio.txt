@@ -1,0 +1,35 @@
+Output of Mean-Variance Portfolio
+---------------------------
+START testing Mean variance portfolios 
+mv_calculate_portfolio_given_mean_unconstrained:
+      0.81903
+      0.92200
+      0.76169
+      -1.5027
+mv_calculate_portfolio_given_mean_no_short_sales:
+      0.11734
+      0.18179
+      0.70086
+      0.00000
+mv_calculate_portfolio_given_mean_min_max_constraints:
+      0.10000
+      0.15505
+      0.64495
+      0.10000
+DONE testing Mean variance portfolios
+... finished.
+[00] Run All (excluding sub-options)
+[01] alt-formula: merton
+[02] quadratic approximation
+[03] binomial (sub options)
+[04] Black-Scholes
+[05] Bond Options (sub options)
+[06] Bonds
+[07] Cash Flow
+[08] Currency
+[09] Exotics
+[10] Finite Differences
+[11] Futures
+[12] Mean-Variance Portfolio
+[13] Simulation (sub options)
+[14] Term Structure (sub options)

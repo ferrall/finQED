@@ -1,0 +1,15 @@
+Output of Pricing 
+---------------------------
+START testing Monte Carlo option pricing
+ call 
+   black scholes price = 14.9758
+    simulated = 15.0471
+ put  
+   black scholes price = 5.45953
+    simulated = 5.41274
+DONE testing MC pricing 
+... finished.
+[00] Run All
+[01] Pricing 
+[02] Deltas 
+[03] General

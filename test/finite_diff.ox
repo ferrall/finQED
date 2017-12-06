@@ -1,7 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_finite_differences()
+finite_differences()
 {
     println("START testing finite differences");
     decl S = 50.0;
@@ -30,8 +29,4 @@ test_finite_differences()
     println(" implicit American put price = ",
     	option_price_put_american_finite_diff_implicit(S,X,r,sigma,time,no_S_steps,no_t_steps));
     println("DONE testing finite differences ");
-}
-main()
-{
-	test_finite_differences();
 }

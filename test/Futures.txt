@@ -1,0 +1,26 @@
+Output of test:Futures
+---------------------------
+START testing futures options etc 
+ futures price 110.517
+ european call price = 7.20754
+ european put price = 7.20754
+ call price, binomial american = 7.38478
+ put price, binomial american = 7.38478
+DONE testing futures 
+... finished.
+[00] Run All (excluding sub-options)
+[01] alt-formula: merton
+[02] quadratic approximation
+[03] binomial (sub options)
+[04] Black-Scholes
+[05] Bond Options (sub options)
+[06] Bonds
+[07] Cash Flow
+[08] Currency
+[09] Exotics
+[10] Finite Differences
+[11] Futures
+[12] Mean-Variance Portfolio
+[13] Simulation (sub options)
+[14] Term Structure (sub options)
+[-2]  Help on Menu

@@ -1,21 +1,17 @@
-// file bin_am_partials_call.cc
-// author Bernt Arne Oedegaard
-
-#include <oxstd.h>
-#include "financialNR.h"
+#include "../../include/finQED.h"
 
 option_price_partials_american_call_binomial(
-						decl S,  		// spot price
-						decl X,  		// Exercise price,
-						decl r,     	// interest rate
-						decl sigma, 	// volatility
-						decl time,  	// time to maturity
-						decl steps, 	// steps in binomial
-						decl delta, 	//  out: partial wrt S
-						decl gamma, 	//  out: second prt wrt S
-						decl theta, 	// out: partial wrt time
-						decl vega,  	//  out: partial wrt sigma
-						decl rho)   	// out: partial wrt r
+						 S,  		// spot price
+						 X,  		// Exercise price,
+						 r,     	// interest rate
+						 sigma, 	// volatility
+						 time,  	// time to maturity
+						 steps, 	// steps in binomial
+						delta, 	//  out: partial wrt S
+						gamma, 	//  out: second prt wrt S
+						theta, 	// out: partial wrt time
+						vega,  	//  out: partial wrt sigma
+						rho)   	// out: partial wrt r
 {
     decl delta_t =(time/steps);
     decl R = exp(r*delta_t);

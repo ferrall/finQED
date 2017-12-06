@@ -3,13 +3,13 @@
 // calculate the binomial option pricing formula for an American put
 
 #include <oxstd.h>
-    
-option_price_put_american_binomial(decl S,     // spot price
-								   decl X,     // exercice price
-								   decl r,     // interest rate
-								   decl sigma, // volatility
-								   decl t,     // time to maturity
-								   decl steps)  // no steps in binomial tree
+
+option_price_put_american_binomial(S,     // spot price
+								    X,     // exercice price
+								    r,     // interest rate
+								    sigma, // volatility
+								    t,     // time to maturity
+								    steps)  // no steps in binomial tree
 {
     decl R = exp(r*(t/steps));            // interest rate for each step
     decl Rinv = 1.0/R;                    // inverse of interest rate
@@ -22,7 +22,7 @@ option_price_put_american_binomial(decl S,     // spot price
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
 	prices = cumprod(prices)';
-	decl put_values = X - prices .> 0 .? X - prices .: 0; 
+	decl put_values = X - prices .> 0 .? X - prices .: 0;
 
 	for (decl step=steps-1; step>=0; --step)
 	{

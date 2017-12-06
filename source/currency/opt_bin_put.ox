@@ -3,9 +3,7 @@
 
 #include <oxstd.h>
 
-currency_option_price_put_american_binomial(
-    decl S, decl X, decl r, decl r_f, decl sigma,
-    decl time, decl no_steps) {
+currency_option_price_put_american_binomial(S,X,r,r_f,sigma,time,no_steps) {
   	decl exchange_rates = zeros(1,no_steps+1);
   	decl put_values = zeros(1,no_steps+1);
     decl t_delta= time/no_steps;
@@ -17,7 +15,7 @@ currency_option_price_put_american_binomial(
     decl pDown = 1.0 - pUp;
     exchange_rates[0] = S*pow(d, no_steps);
     decl i;
-    for (i=1; i<=no_steps; ++i) 
+    for (i=1; i<=no_steps; ++i)
 	exchange_rates[i] = uu*exchange_rates[i-1]; // terminal tree nodes
     for (i=0; i<=no_steps; ++i) put_values[i] = max(0.0, (exchange_rates[i]-X));
     for (decl step=no_steps-1; step>=0; --step) {

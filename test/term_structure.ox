@@ -1,8 +1,6 @@
-#include <oxstd.h>
-#import "financialNR"
+#import "finQED"
 
-test_transforms()
-{
+transforms(){
     println(" testing transformations ");
     decl r=0.1;
     decl t=1;
@@ -16,35 +14,33 @@ test_transforms()
 		" t= ", t, " forward = ",
 		term_structure_forward_rate_from_disc_facts(d,d1,t));
 }
-test_cir()
-{
+cir() {
     println(" cir dfact (t=1): ",
-		term_structure_discount_factor_cir(1.0,0.1,0.1,0.1,0.1,0.1));
-}
-test_vasicek()
-{
+	term_structure_discount_factor_cir(1.0,0.1,0.1,0.1,0.1,0.1));
+    }
+vasicek() {
     println(" vasicek dfact (t=1): ",
     	term_structure_discount_factor_vasicek(1.0,0.05,-0.1,0.1,0.1));
-}
-test_esti_cir()
-{
+    }
+
+esti_cir() {
     println(" estimated cir discount_factor (t=1): ",
     	term_structure_discount_factor_estimated_cir(1.0,0.1,0.1,0.1,1.1));
 }
-test_nelson_siegel()
-{
+
+nelson_siegel() {
     decl t=1.0;
     println(" ns= ",
 		term_structure_yield_nelson_siegel(t,0.1,0.1,0.1,1.0));
 }
-test_bliss()
-{
+
+bliss(){
     decl t=1.0;
     println(" bliss r(t=1) ",
     	term_structure_yield_bliss(t,0.1,0.1,0.1,1.0,1.0));
 }
-test_spline()
-{
+
+ts_spline(){
     decl b=0.1;
     decl c=0.1;
     decl d=-0.1;
@@ -54,8 +50,7 @@ test_spline()
     println("spline disc fact ",
     	term_structure_discount_factor_cubic_spline(t,b,c,d,f,knots));
 }
-test_interpolated()
-{
+interpolated() {
     decl times = <0.1,0.5,1,5,10>;
     decl yields = <0.1,0.2,0.3,0.4,0.5>;
     println(" testing interpolated ");
@@ -66,16 +61,18 @@ test_interpolated()
     println(" t=5 ", term_structure_yield_linearly_interpolated(5,times,yields));
     println(" t=10 ", term_structure_yield_linearly_interpolated(10,times,yields));
 }
-main()
-{
-    println("START testing term structure calculations ");
-    test_transforms();
-    test_interpolated();
-    test_spline();
-    test_bliss();
-    test_nelson_siegel();
-    test_vasicek();
-    test_cir();
-    test_esti_cir();
-    println("END testing term structure calculations ");
-}
+
+termstruc_menu (){
+	decl m = new Menu("Term Structure",FALSE);
+	m->add(
+    	{"Transforms",transforms},
+    	{"Interpolated",interpolated},
+    	{"Spline ",ts_spline},
+    	{"Bliss",bliss},
+    	{"Nelson-Siegel",nelson_siegel},
+    	{"Vasicek",vasicek},
+    	{"CIR ",cir},
+    	{"Estimated CIR",esti_cir}
+		);
+	return m;
+    }

@@ -1,9 +1,9 @@
-// file cflow_irr_test_unique.cc 
+// file cflow_irr_test_unique.cc
 // author Bernt A Oedegaard
 
 #include <oxstd.h>
 
-static count_sign_changes(const v)
+static count_sign_changes(v)
 {
 	decl c = sizerc(v);
 	if (c <= 1)
@@ -13,7 +13,7 @@ static count_sign_changes(const v)
 	return int(sumc(v1 .< 0 .&& v2 .>= 0 .|| v1 .>= 0 .&& v2 .< 0));
 }
 
-cash_flow_unique_irr(const cflow_times, const cflow_amounts)
+cash_flow_unique_irr(cflow_times,cflow_amounts)
 {
     // check whether the cash flow has a unique irr.
 	// first check Descartes rule

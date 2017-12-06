@@ -5,11 +5,9 @@
 
 #include <oxstd.h>
 
-term_structure_yield_nelson_siegel(decl t,
-					  decl beta0, decl beta1, decl beta2,
-					  decl lambda ) { 
+term_structure_yield_nelson_siegel(t,beta0,beta1,beta2,lambda ) {
    if (t==0.0) return beta0;
-   decl tl = t/lambda; 
-   decl r = beta0 + (beta1+beta2) * ((1-exp(-tl))/tl) + beta2 * exp(-tl);  
-   return r; 
-} 
+   decl tl = t/lambda;
+   decl r = beta0 + (beta1+beta2) * ((1-exp(-tl))/tl) + beta2 * exp(-tl);
+   return r;
+}
