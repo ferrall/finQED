@@ -4,7 +4,7 @@
 
 #include <oxstd.h>
 #include "../../include/bin.h"
-#import "set_parameters.ox"
+#import "set_parameters.ox..."
 
 option_price_call_european_binomial() // no steps in binomial tree
 {
