@@ -8,7 +8,7 @@
      A simple use of Monte Carlo Simulation to value the European put option.
 	 1) Explanations of variables
 	    S:  Stock Price
-	    X:  Strike Proce
+	    X:  Strike Price
 	    r:  Interest rate
 	    sigma: Volatility
 	    time:  Time to final date

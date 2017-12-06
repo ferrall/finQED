@@ -3,7 +3,7 @@
 
 #include <oxstd.h>  
 /**	 The differece between call option and put option: call option is the right to buy the asset at a certain price in the future, while put option is the right to sell.
-	 Using a simple example to understand, on the final date, for call option, its value is the asset price minus strike price;	 for put option, its value is the strike price minus asset price.
+	 So it is easy to understand, on the final date, for call option, its value is the asset price minus strike price;	 for put option, its value is the strike price minus asset price.
      Except this, almost the same with function 'option_price_call_european_simulated'
      A simple use of Monte Carlo Simulation to value the European put option.
 	 1) Explanations of variables
