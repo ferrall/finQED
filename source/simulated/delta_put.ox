@@ -2,7 +2,13 @@
 // author: Bernt Arne Oedegaard
 
 #include <oxstd.h>
-
+/**	see simulated_delta_call for more specific explanation,
+    almost the same, except the calculation of option price.
+    Difference between call option and put option: call option is the right to buy the asset at a certain price in the future, while put option is the right to sell.
+	So it is easy to understand, on the final date,
+	for call option, its value is the asset price minus strike price;
+	for put option, its value is the strike price minus asset price.
+**/
 option_price_delta_put_european_simulated(
     S,X,r,sigma,time,no_sims)
 {

@@ -1,11 +1,11 @@
-// file: simulated_call_euro.cc
+﻿// file: simulated_call_euro.cc
 // author: Bernt Arne Oedegaard
 
 #include <oxstd.h>
 /**  What does funvtion 'option_price_call_european_simulated' do? It's a simple use of Monte Carlo Simulation to value the European call option
 	 1) Explanations of variables
 	    S:  Stock Price
-	    X:  Strike Proce
+	    X:  Strike Price
 	    r:  Interest rate
 	    sigma: Volatility
 	    time:  Time to final date
@@ -20,7 +20,7 @@ option_price_call_european_simulated(
     decl SD = sigma * sqrt(time);		/**	calculate the standard deviation of a single simualtion SD=sigma*t^(1/2)  **/
     decl prices = S * exp(R + SD * rann(1, no_sims)) - X;	/** rann(1, no_sims) produces a 1 by no_sims matrix with random numbers from the standard normal distribution, which means prices is also  a 1 by no_sims matrix.
 								    Price of option = Stock price at final date - strike price
-								    Stock price * e^(R + SD* a random number)  → this formula is based on the implication mentioned before	
+								    Stock price * e^(R + SD* a random number)  â this formula is based on the implication mentioned before	
 	                                                            Here, we calculate the price of call option through simulation for no_sims times
 								**/
     decl sum_payoffs = double(sumr(prices .> 0 .? prices .: 0));  /** Here, we calculate the sum of all the prices of option which are greater than 0
