@@ -19,7 +19,7 @@ option_price_american_proportional_dividends_binomial(option)
     decl p_up;
     decl p_down;
 	
-	initial_calcs(&R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
 	
     decl dividend_steps = trunc(dividend_times/time*steps);
 

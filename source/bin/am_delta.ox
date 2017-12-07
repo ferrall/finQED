@@ -11,8 +11,8 @@ option_price_delta_american_binomial(option) // steps in binomial
     decl p_up;
     decl p_down;
 	
-	initial_calcs(&R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-
+	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	
 	// fill in the endnodes.
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);

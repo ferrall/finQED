@@ -11,7 +11,11 @@ Proportional dividends
  american call, dividends=3%, 3%, price= 11.4385
  american put, dividends=3%, 3%, price= 8.37137
 Discrete dividends: 
- american call, dividends 2.5 2.5, price= 18.9261
- american put, dividends 2.5 2.5, price= 10.3653
+ american call, dividends 2.5 2.5, price= 12.0233
+ american put, dividends 2.5 2.5, price= 8.11493
 DONE testing binomial pricing 
 ... finished.
+[00] Run All (excluding sub-options)
+[01] Pricing
+[02] Partials
+[-2]  Help on Menu

@@ -11,34 +11,19 @@ option_price_european_binomial(option) // no steps in binomial tree
     decl p_up;
     decl p_down;
 	
-	initial_calcs(&R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
 	
 	// fill in the endnodes.
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
+	if (option == 0) prices = cumprod(prices)' - X;
+	if (option == 1) prices = X - cumprod(prices)';
 
-
-	// calculate call values:
-	if (option == 0) {
-		prices = cumprod(prices)' - X;
-		decl call_values = prices .> 0 .? prices .: 0;
+	decl values = prices .> 0 .? prices .: 0;
 	
-		for (decl step=steps-1; step>=0; --step)
-		{
-			call_values = (p_up * call_values[1 : step + 1] + p_down * call_values[ : step]) * Rinv;
-	    }
-	    return call_values[0];
-					 }
-	
-	// calculate put values:
-	if (option == 1) {
-		prices = X - cumprod(prices)';
-		decl put_values = prices .> 0 .? prices .: 0;
-	
-		for (decl step=steps-1; step>=0; --step)
-		{
-			put_values = (p_up * put_values[1 : step + 1] + p_down * put_values[ : step]) * Rinv;
-	    }
-		return put_values[0];
-					  }
+	for (decl step=steps-1; step>=0; --step)
+	{
+	values = (p_up * values[1 : step + 1] + p_down * values[ : step]) * Rinv;	
+	}
+	return values[0];					  
 }
