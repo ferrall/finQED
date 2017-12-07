@@ -54,7 +54,7 @@ option_price_partials_american_put_binomial(
     vega[0] = (tmp_prices-f00)/diff;
     diff = 0.05;
     decl tmp_r = r+diff;
-    tmp_prices = option_price_american_binomial(1
+    tmp_prices = option_price_put_american_binomial(
 		//S,X,tmp_r,sigma,time,steps
 		);
     rho[0] = (tmp_prices-f00)/diff;

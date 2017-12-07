@@ -1,0 +1,7 @@
+Output of test:Exotics
+---------------------------
+START testing analytical lookback 
+ call 27.0714
+ put 27.0576
+DONE testing analytical lookback 
+... finished.

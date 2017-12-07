@@ -1,0 +1,24 @@
+Output of test:Cash Flow
+---------------------------
+START testing cash flow algoritms 
+ testing PV 
+ pv 0   10.5171
+ pv 0.1 -1.47991e-06
+ discrete compounding 
+ pv 0   10.5171
+ pv 0.1 0.427347
+ testing irr 
+ irr (should be 0.30) 0.299999
+ irr (should be 0.30) 0.299999
+ irr (should be ?) 0.0670067
+ testing, is irr unique? 
+ is irr unique (?) 1
+ irr unique (?) 1
+ irr unique (?) 1
+ irr: 0.00317383
+ irr unique ? (blows) 0
+ irr: 3.06672e+206
+ irr unique (?) 1
+ irr: 0.314924
+DONE testing cash flow algorithms
+... finished.

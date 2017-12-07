@@ -1,0 +1,4 @@
+Output of test:alt-formula: merton
+---------------------------
+ Merton's jump diffusion,  Call price = 10.4508
+... finished.

@@ -1,21 +1,21 @@
-Output of Mean-Variance Portfolio
+Output of test:Mean-Variance Portfolio
 ---------------------------
 START testing Mean variance portfolios 
 mv_calculate_portfolio_given_mean_unconstrained:
-      0.81903
-      0.92200
-      0.76169
-      -1.5027
+     0.030511
+      0.99166
+      -2.7273
+       2.7051
 mv_calculate_portfolio_given_mean_no_short_sales:
-      0.11734
-      0.18179
-      0.70086
-      0.00000
+       0.0000
+      0.29976
+       0.0000
+      0.70024
 mv_calculate_portfolio_given_mean_min_max_constraints:
       0.10000
-      0.15505
-      0.64495
+      0.27986
       0.10000
+      0.52014
 DONE testing Mean variance portfolios
 ... finished.
 [00] Run All (excluding sub-options)
@@ -33,3 +33,9 @@ DONE testing Mean variance portfolios
 [12] Mean-Variance Portfolio
 [13] Simulation (sub options)
 [14] Term Structure (sub options)
+[-2]  Help on Menu
+Interactive Menu: binomial
+[00] Run All (excluding sub-options)
+[01] Pricing
+[02] Partials
+[-2]  Help on Menu

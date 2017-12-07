@@ -13,23 +13,24 @@ binomial_pricing()
     decl dividend_yields = <0.03,0.03>;
     decl dividend_amounts = <2.5,2.5>;
 
+	decl option = <0, 1>;	// if option == 0, return call value; if option == 1, return put value
 	set_parameters(spot, exercise, r, sigma, time_to_maturity, steps, dividend_times, dividend_yields, dividend_amounts);
 	
     println(" european ");
-    println(" call: ", option_price_call_european_binomial() );
-	println(" put: ", option_price_put_european_binomial() );
+    println(" call: ", option_price_european_binomial(option[0]) );
+	println(" put: ", option_price_european_binomial(option[1]) );
     println(" american ");
-    println(" call: ", option_price_call_american_binomial() );
-    println(" put: ", option_price_put_american_binomial() );
+    println(" call: ", option_price_american_binomial(option[0]) );
+    println(" put: ", option_price_american_binomial(option[1]) );
    
 
     println("Proportional dividends ");
     println(" american call, dividends=3%, 3%, price= ",
-		option_price_call_american_proportional_dividends_binomial(
+		option_price_american_proportional_dividends_binomial(option[0]
 //	    	spot,exercise,r,sigma,time_to_maturity,steps,dividend_times, dividend_yields
 			) );
     println(" american put, dividends=3%, 3%, price= ",
-		option_price_put_american_proportional_dividends_binomial(
+		option_price_american_proportional_dividends_binomial(option[1]
 //	    	spot,exercise,r,sigma,time_to_maturity,steps,dividend_times, dividend_yields
 ));
 
@@ -56,9 +57,9 @@ binomial_partials()
     decl no_steps=100;
 	set_parameters(S,X,r,sigma,time, no_steps,0,0,0);
     println(" american call delta = ",
-		option_price_delta_american_call_binomial() );
+		option_price_delta_american_binomial(0) );
     println(" american put delta = ",
-		option_price_delta_american_put_binomial() );
+		option_price_delta_american_binomial(1) );
     decl delta, gamma, theta, vega, rho;
     option_price_partials_american_call_binomial(&delta, &gamma, &theta, &vega, &rho);
     println("CALL price partials ");
