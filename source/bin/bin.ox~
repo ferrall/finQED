@@ -6,6 +6,5 @@
 #include "am_partials_call.ox"
 #include "am_partials_put.ox"
 #include "am_prop_div.ox"
-#include "eur_call.ox"
-#include "eur_put.ox"
+#include "eur.ox"
 #include "set_parameters.ox"

@@ -2,6 +2,7 @@
 static decl  S, X, r, sigma, time, steps, dividend_times, dividend_yields, dividend_amounts;
 
 set_parameters(inS, inX, inr, insigma, intime, insteps, individend_times, individend_yields, individend_amounts);
+initial_calcs(R, Rinv, u, uu, d, p_up, p_down);
 
 option_price_european_binomial(option);
 option_price_american_binomial(option);

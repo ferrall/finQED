@@ -26,18 +26,18 @@ binomial_pricing()
 
     println("Proportional dividends ");
     println(" american call, dividends=3%, 3%, price= ",
-		option_price_american_proportional_dividends_binomial(0
+		option_price_american_proportional_dividends_binomial(option[0]
 //	    	spot,exercise,r,sigma,time_to_maturity,steps,dividend_times, dividend_yields
 			) );
     println(" american put, dividends=3%, 3%, price= ",
-		option_price_american_proportional_dividends_binomial(1
+		option_price_american_proportional_dividends_binomial(option[1]
 //	    	spot,exercise,r,sigma,time_to_maturity,steps,dividend_times, dividend_yields
 ));
 
     println("Discrete dividends: " );
     println(" american call, dividends 2.5 2.5, price= ",
 		option_price_call_american_discrete_dividends_binomial(
-//	    	spot,exercise,r,sigma,time_to_maturity,steps,	    	dividend_times, dividend_amounts
+	    	spot,exercise,r,sigma,time_to_maturity,steps,	    	dividend_times, dividend_amounts
 )
 );
     println(" american put, dividends 2.5 2.5, price= ",

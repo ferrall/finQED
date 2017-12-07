@@ -2,6 +2,7 @@
 
 option_price_put_american_discrete_dividends_binomial() {
 	option_price_put_american_discrete_dividends_binomial_recursive(S,time,steps,dividend_times,dividend_amounts);
+	return option_price_put_american_discrete_dividends_binomial_recursive(S,time,steps,dividend_times,dividend_amounts);
 	}
 
 /* given an amount of dividend, the binomial tree does not recombine, have to
@@ -18,13 +19,16 @@ option_price_put_american_discrete_dividends_binomial_recursive(S,time,steps,div
 	
     decl steps_before_dividend = int(dividend_times[0]/time*steps);
 
-    decl R = exp(r*(time/steps));
-    decl Rinv = 1.0/R;
-    decl u = exp(sigma*sqrt(time/steps));
-    decl uu= u*u;
-    decl d = 1.0/u;
-    decl p_up   = (R-d)/(u-d);
-    decl p_down = 1.0 - p_up;
+    decl R;           				// interest rate for each step
+    decl Rinv;                      // inverse of interest rate
+    decl u;   						// up movement
+    decl uu;						// square of up movement
+    decl d;
+    decl p_up;
+    decl p_down;
+	
+	initial_calcs(&R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	
     decl dividend_amount = dividend_amounts[0];
 	// temporaries with one less dividend
     decl tmp_dividend_amounts, tmp_dividend_times;

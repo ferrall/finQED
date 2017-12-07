@@ -8,13 +8,17 @@ option_price_partials_american_put_binomial(
 						rho)   	// out: partial wrt r
 {
     decl delta_t =(time/steps);
-    decl R = exp(r*delta_t);
-    decl Rinv = 1.0/R;
-    decl u = exp(sigma*sqrt(delta_t));
-    decl d = 1.0/u;
-    decl uu= u*u;
-    decl p_up   = (R-d)/(u-d);
-    decl p_down = 1.0 - p_up;
+
+    decl R;           				// interest rate for each step
+    decl Rinv;                      // inverse of interest rate
+    decl u;   						// up movement
+    decl uu;						// square of up movement
+    decl d;
+    decl p_up;
+    decl p_down;
+	
+	initial_calcs(&R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+		
 	// fill in the endnodes.
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
