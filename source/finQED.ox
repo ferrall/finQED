@@ -79,6 +79,8 @@
 #include "simulated/delta_put.ox"
 #include "simulated/put_euro.ox"
 #include "simulated/parameters_calculation.ox"
+#include "simulated/delta_calculation.ox"
+#include "simulated/euro_option.ox"
 #include "termstru/discfact_cir.ox"
 #include "termstru/discfact_cubic_spline.ox"
 #include "termstru/discfact_estimated_cir.ox"
