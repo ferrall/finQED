@@ -1,4 +1,4 @@
-Output of Bonds
+Output of test:Bonds
 ---------------------------
 START testing bond algoritms 
  price = 99.1088

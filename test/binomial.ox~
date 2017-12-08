@@ -36,9 +36,9 @@ binomial_pricing()
 
     println("Discrete dividends: " );
     println(" american call, dividends 2.5 2.5, price= ",
-		option_price_american_discrete_dividends_binomial(option[0], spot, time, steps, dividend_times, dividend_amounts));
+		option_price_american_discrete_dividends_binomial(option[0], S,time,steps,dividend_times,dividend_amounts));
     println(" american put, dividends 2.5 2.5, price= ",
-		option_price_american_discrete_dividends_binomial(option[1], spot, time, steps, dividend_times, dividend_amounts));
+		option_price_american_discrete_dividends_binomial(option[1], S,time,steps,dividend_times,dividend_amounts));
     println("DONE testing binomial pricing ");
 }
 binomial_partials()

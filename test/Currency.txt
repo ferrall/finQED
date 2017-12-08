@@ -1,0 +1,11 @@
+Output of test:Currency
+---------------------------
+START testing option price 
+ european 
+  call = 0.15821
+  put = 0.130928
+ binomial american 
+  call = 0.159168
+  put = 0.293817
+DONE testing option price 
+... finished.

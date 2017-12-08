@@ -1,4 +1,4 @@
-Output of Partials
+Output of binomial:Partials
 ---------------------------
 START testing binomial partials 
  american call delta = 0.699792
@@ -17,6 +17,3 @@ PUT price partials
  rho   = -21.5433
 DONE testing binomial partials 
 ... finished.
-[00] Run All
-[01] Pricing
-[02] Partials

@@ -1,0 +1,7 @@
+Output of test:quadratic approximation
+---------------------------
+START testing quadratic approximation 
+ call 5.71413
+ put 3.06861
+DONE test of approximation 
+... finished.
