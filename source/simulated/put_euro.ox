@@ -18,8 +18,9 @@
 **/
 option_price_put_european_simulated(S,X,r,sigma,time,no_sims)
 {
-    decl R = (r - 0.5 * sqr(sigma)) * time;		 /** calculate R=(r-(1/2)*sigma^2)*t **/
-    decl SD = sigma * sqrt(time);				 /** calculate the standard deviation of a single simualtion SD=sigma*t^(1/2)  **/
+   parameters_calculation1(r,sigma,time);
+   // decl R = (r - 0.5 * sqr(sigma)) * time;		 /** calculate R=(r-(1/2)*sigma^2)*t **/
+   // decl SD = sigma * sqrt(time);				 /** calculate the standard deviation of a single simualtion SD=sigma*t^(1/2)  **/
 	decl prices = X - S * exp(R + SD * rann(1, no_sims));  /** rann(1, no_sims) produces a 1 by no_sims matrix with random numbers from the standard normal distribution, which means prices is also  a 1 by no_sims matrix.
 																Price of option = Strike price - Stock price at final date
 															    Stock price * e^(R + SD* a random number)  → this formula is based on the implication mentioned in 3)	
@@ -30,3 +31,24 @@ option_price_put_european_simulated(S,X,r,sigma,time,no_sims)
 															      **/
     return exp(-r*time) * (sum_payoffs/no_sims);   /**  calculate the present value of the average simulated price of option as the estimated call option price**/
 }
+/*
+option_price_euro_simulated(
+    S, X, r, sigma, time, no_sims, corp)
+{
+    parameters_calculation1(r,sigma,time);
+	if (corp==0)  decl prices = S * exp(R + SD * rann(1, no_sims)) - X;
+	/** rann(1, no_sims) produces a 1 by no_sims matrix with random numbers from the standard normal distribution, which means prices is also  a 1 by no_sims matrix.
+		Price of option = Stock price at final date - strike price
+		Stock price * e^(R + SD* a random number)  -- this formula is based on the implication mentioned before	
+	    Here, we calculate the price of call option through simulation for no_sims times
+	**/
+	else if(corp==1)  decl prices = X - S * exp(R + SD * rann(1, no_sims));
+    decl sum_payoffs = double(sumr(prices .> 0 .? prices .: 0));
+	/** Here, we calculate the sum of all the prices of option which are greater than 0
+	We have known that prices is a 1 by no_sims matrix, so this sentence use a conditional expression ?: to distinguish every element >0 than add up them 
+	**/
+    return pvoption(r,time,no_sims,sum_payoffs);  /**  calculate the present value of the average simulated price of option as the estimated call option price**/
+} 
+*/
+
+

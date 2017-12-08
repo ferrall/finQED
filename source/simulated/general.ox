@@ -11,7 +11,7 @@ derivative_price_european_simulated2 ( S,  X,  r,  sigma,time, payoff, no_sims) 
        decl S_T = simulate_terminal_price(S,r,sigma,time);
        sum_payoffs += payoff(S_T,X);
     }
-    return  exp(-r*time) * (sum_payoffs/no_sims);
+    return  pvoption(r,time,no_sims,sum_payoffs);
 }
 
 /** The second one describes a payoff which depends on the whole price path and some constants, without certain strike prices
@@ -23,7 +23,7 @@ derivative_price_european_simulated1 ( S,r,sigma,time,payoff,no_steps,no_sims) {
       prices = simulate_price_sequence(S,r,sigma,time,no_steps);
       sum_payoffs += payoff(prices);
    }
-   return  exp(-r*time) * (sum_payoffs/no_sims);
+   return  pvoption(r,time,no_sims,sum_payoffs);
 }
 
 /** The third one describes a payoff which depends on the whole price path and some constants with a certain strike price**/
@@ -34,5 +34,5 @@ derivative_price_european_simulated3 ( S,X,r,sigma,time,payoff,no_steps,no_sims)
       prices = simulate_price_sequence(S,r,sigma,time,no_steps);
       sum_payoffs += payoff(prices,X);
    }
-   return  exp(-r*time) * (sum_payoffs/no_sims);
+   return  pvoption(r,time,no_sims,sum_payoffs);
 }

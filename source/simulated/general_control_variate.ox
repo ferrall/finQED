@@ -21,8 +21,8 @@ derivative_price_european_simulated_control_variate(
         sum_payoffs += payoff(prices);		// simulate the prices of a certain option using Monte Carlo 
         sum_payoffs_bs += payoff_european_call(prices[sizerc(prices)-1],X);	  // simulate the Black Scholes Euro call option prices using Monte Carlo
     }
-    decl c_sim = exp(-r*time) * (sum_payoffs/no_sims);	// calculate the average PV of a certain option prices	
-    decl c_bs_sim = exp(-r*time) * (sum_payoffs_bs/no_sims); // calculate the average PV of Black Scholes option prices
+    decl c_sim = pvoption(r,time,no_sims,sum_payoffs);	// calculate the average PV of a certain option prices	
+    decl c_bs_sim = pvoption(r,time,no_sims,sum_payoffs_bs); // calculate the average PV of Black Scholes option prices
     c_sim += (c_bs-c_bs_sim);  /** calculate the control variate adjustment (c_bs-c_bs_sim), which means the undervaluing part of Monte Calo simulation over Black Scholes calcultaion of the euro call option
 								   and add the control variate adjustment to the simulation price of the certain option.
 							   **/

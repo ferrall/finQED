@@ -11,7 +11,6 @@ simulate_terminal_price( S,  	// current value of underlying
 			       		 sigma, // volatitily
 			       		 time)  // time to final date
 {
-    decl R = (r - 0.5 * sqr(sigma)) * time;
-    decl SD = sigma * sqrt(time);
+    parameters_calculation1(r,sigma,time);
     return S * exp(R + SD * rann(1,1));
 }
