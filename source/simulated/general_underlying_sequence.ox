@@ -12,6 +12,6 @@ simulate_price_sequence(S, 		// current value of underlying
 			     		 time,  	// time to final date
 			     		 no_steps)  // number of steps
 {
-    parameters_calculation2(r,sigma,time,no_steps);
+    parameters_calculation2(r,sigma,time,no_steps,&R,&SD);
 	return S * cumprod(exp(R + SD * rann(no_steps, 1)))'; /** cumprod returns a 1 by no_steps matrix here with the cumulated autoregressive product**/
 }

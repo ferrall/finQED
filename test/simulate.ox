@@ -1,4 +1,9 @@
 #import "finQED"
+#include "../source/simulated/parameters_calculation.ox"
+#include "../source/simulated/euro_option.ox"
+#include "../source/simulated/delta_calculation.ox"
+
+
 
 simulate_parameters(S,X,r,sigma,time,no_sims)
 {
@@ -26,14 +31,14 @@ simulate_pricing()
     println("   black scholes price = ",
 		option_price_call_black_scholes(S,X,r,sigma,time));
 	println("   simulated = ",
-	   //option_price_euro_simulated(S, X, r, sigma, time, no_sims, 0));	
-	   option_price_call_european_simulated(S,X,r,sigma,time,no_sims));
+	   option_price_euro_simulated(S, X, r, sigma, time, no_sims, 0));	
+	   //option_price_call_european_simulated(S,X,r,sigma,time,no_sims));
     println("2)put  ");
     println("   black scholes price = ",
 		option_price_put_black_scholes(S,X,r,sigma,time));
     println("   simulated = ",
-	  //option_price_euro_simulated(S, X, r, sigma, time, no_sims, 1));
-	   option_price_put_european_simulated(S,X,r,sigma,time,no_sims));
+	  option_price_euro_simulated(S, X, r, sigma, time, no_sims, 1));
+	   //option_price_put_european_simulated(S,X,r,sigma,time,no_sims));
     println("DONE testing MC pricing ");
 }
 simulate_deltas()
@@ -50,13 +55,13 @@ simulate_deltas()
     println(" call: bs= ",
     	option_price_delta_call_black_scholes(S,X,r,sigma,time),
         " sim= ",
-        option_price_delta_call_european_simulated(S,X,r,sigma,time,no_sims));
-		//option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,0));
+        //option_price_delta_call_european_simulated(S,X,r,sigma,time,no_sims));
+		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,0));
     println(" put: bs= ",
     	option_price_delta_put_black_scholes(S,X,r,sigma,time),
       	" sim= ",
-   		option_price_delta_put_european_simulated(S,X,r,sigma,time,no_sims));
-		//option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,1));
+   		//option_price_delta_put_european_simulated(S,X,r,sigma,time,no_sims));
+		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,1));
   	println("DONE testing estimating deltas");
 }
 

@@ -1,7 +1,8 @@
 ﻿#include <oxstd.h>
 option_price_euro_simulated(S, X, r, sigma, time, no_sims, corp)
 {
-    parameters_calculation1(r,sigma,time);
+	decl R,SD;
+	parameters_calculation1(r,sigma,time,&R,&SD);
 	decl prices;
 	if ( corp == 0)  {prices = S * exp(R + SD * rann(1, no_sims)) - X;  };
 	/** rann(1, no_sims) produces a 1 by no_sims matrix with random numbers from the standard normal distribution, which means prices is also  a 1 by no_sims matrix.

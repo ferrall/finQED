@@ -20,7 +20,7 @@
 option_price_call_european_simulated(
     S,X,r,sigma,time,no_sims)
 {
-    parameters_calculation1(r,sigma,time);
+    parameters_calculation1(r,sigma,time,&R,&SD);
     decl prices = S * exp(R + SD * rann(1, no_sims)) - X;  /** rann(1, no_sims) produces a 1 by no_sims matrix with random numbers from the standard normal distribution, which means prices is also  a 1 by no_sims matrix.
 							       Price of option = Stock price at final date - strike price
 							       Stock price * e^(R + SD* a random number)  â this formula is based on the implication mentioned before	

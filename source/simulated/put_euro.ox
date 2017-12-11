@@ -18,7 +18,7 @@
 **/
 option_price_put_european_simulated(S,X,r,sigma,time,no_sims)
 {
-   parameters_calculation1(r,sigma,time);
+   parameters_calculation1(r,sigma,time,&R,&SD);
    // decl R = (r - 0.5 * sqr(sigma)) * time;		 /** calculate R=(r-(1/2)*sigma^2)*t **/
    // decl SD = sigma * sqrt(time);				 /** calculate the standard deviation of a single simualtion SD=sigma*t^(1/2)  **/
 	decl prices = X - S * exp(R + SD * rann(1, no_sims));  /** rann(1, no_sims) produces a 1 by no_sims matrix with random numbers from the standard normal distribution, which means prices is also  a 1 by no_sims matrix.
