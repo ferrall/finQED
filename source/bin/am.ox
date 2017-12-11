@@ -10,22 +10,9 @@ option_price_american_binomial(option)
     decl p_down;					// down probability
 	
 	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-	
-	// fill in the endnodes
-	decl prices = constant(uu, steps + 1, 1);
-	prices[0] = S * pow(d, steps);
-	prices = cumprod(prices)';
 
-	// calculate call or put value
-	decl values;
-	if (option ==0) values = prices - X .> 0 .? prices - X .: 0;
-	if (option == 1) values = X - prices .> 0 .? X - prices .: 0; 
+	decl LB = 0;
+	decl values = values_calc(Rinv, u, uu, d, p_up, p_down, &values, option, LB);
 
-	for (decl step=steps-1; step>=0; --step) {
-		values = (p_up * values[1 : step + 1] + p_down * values[ : step]) * Rinv; 
-		prices = d * prices[1 : step + 1];
-		if (option == 0) values = prices - X .> values .? prices - X .: values;
-		if (option == 1) values = X - prices .> values .? X - prices .: values;
-											 }
-	return values[0];	   					  
+	return values[0];
 }
