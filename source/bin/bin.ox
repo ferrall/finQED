@@ -11,4 +11,5 @@
 #include "am_put.ox"
 #include "eur_call.ox"
 #include "eur_put.ox"
+#include "initial_calcs.ox"
 #include "set_parameters.ox"

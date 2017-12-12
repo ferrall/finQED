@@ -1,13 +1,16 @@
 
 option_price_call_american_binomial(S, r, sigma, time, steps, dividend_times, dividend_amounts)
 {
-    decl R = exp(r*(time/steps));            // interest rate for each step
-    decl Rinv = 1.0/R;                    // inverse of interest rate
-    decl u = exp(sigma*sqrt(time/steps));    // up movement
-    decl uu = u*u;
-    decl d = 1.0/u;
-    decl p_up = (R-d)/(u-d);
-    decl p_down = 1.0-p_up;
+    decl R;           				// interest rate for each step
+    decl Rinv;                      // inverse of interest rate
+    decl u;   						// up movement
+    decl uu;						// square of up movement
+    decl d;							// inverse of up movement
+    decl p_up;						// up probability
+    decl p_down;					// down probability
+
+	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	
 	// fill in the endnodes.
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);

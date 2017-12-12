@@ -5,6 +5,7 @@ static decl  S, X, r, sigma, time, steps, dividend_times, dividend_yields, divid
 
 //new functions:
 set_parameters(inS, inX, inr, insigma, intime, insteps, individend_times, individend_yields, individend_amounts);
+initial_calcs(r, sigma, R, Rinv, u, uu, d, p_up, p_down);
 
 //values functions:
 option_price_call_european_binomial();

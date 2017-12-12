@@ -7,13 +7,16 @@ option_price_partials_american_call_binomial(
 						rho)   	// out: partial wrt r
 {
     decl delta_t =(time/steps);
-    decl R = exp(r*delta_t);
-    decl Rinv = 1.0/R;
-    decl u = exp(sigma*sqrt(delta_t));
-    decl d = 1.0/u;
-    decl uu= u*u;
-    decl p_up   = (R-d)/(u-d);
-    decl p_down = 1.0 - p_up;
+    decl R;           				// interest rate for each step
+    decl Rinv;                      // inverse of interest rate
+    decl u;   						// up movement
+    decl uu;						// square of up movement
+    decl d;							// inverse of up movement
+    decl p_up;						// up probability
+    decl p_down;					// down probability
+
+	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	
 	// fill in the endnodes.
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
@@ -47,9 +50,11 @@ option_price_partials_american_call_binomial(
     decl h = 0.5 * S * ( uu - d*d);
     gamma[0] = ( (f22-f21)/(S*(uu-1)) - (f21-f20)/(S*(1-d*d)) ) / h;
     theta[0] = (f21-f00) / (2*delta_t);
-    decl diff = 0.02;
-    decl tmp_sigma = sigma+diff;
+
+	decl diff = 0.02;
+    decl tmp_sigma = sigma+diff;	
     decl tmp_prices = option_price_call_american_binomial(S, r, tmp_sigma, time, steps, dividend_times, dividend_amounts);
+	
     vega[0] = (tmp_prices-f00)/diff;
     diff = 0.05;
     decl tmp_r = r+diff;
