@@ -1,4 +1,3 @@
-#include "../../include/finQED.h"
 /*
  given an amount of dividend, the binomial tree does not recombine, have to
  start a new tree at each ex-dividend date.
@@ -6,17 +5,17 @@
  binomial formula starting at that point to calculate the value of the live
  option, and compare that to the value of exercising now.
 */
-option_price_call_american_discrete_dividends_binomial(S,X,r,sigma,t,steps,dividend_times,dividend_amounts)
+option_price_call_american_discrete_dividends_binomial(S, time, steps, dividend_times, dividend_amounts)
 {
     decl no_dividends = sizerc(dividend_times);
     if (no_dividends == 0)               // just take the regular binomial
-       return option_price_call_american_binomial(S,X,r,sigma,t,steps);
+       return option_price_call_american_binomial(S, r, sigma, time, steps, dividend_times, dividend_amounts);
 	
-    decl steps_before_dividend = int(dividend_times[0]/t*steps);
+    decl steps_before_dividend = int(dividend_times[0]/time*steps);
 
-    decl R = exp(r*(t/steps));
+    decl R = exp(r*(time/steps));
     decl Rinv = 1.0/R;
-    decl u = exp(sigma*sqrt(t/steps));
+    decl u = exp(sigma*sqrt(time/steps));
     decl uu= u*u;
     decl d = 1.0/u;
     decl p_up   = (R-d)/(u-d);
@@ -41,8 +40,7 @@ option_price_call_american_discrete_dividends_binomial(S,X,r,sigma,t,steps,divid
         decl value_alive
       		= option_price_call_american_discrete_dividends_binomial(
 	         	prices[i]-dividend_amount,
-	         	X, r, sigma,
-	         	t-dividend_times[0], // time after first dividend
+	         	time-dividend_times[0], // time after first dividend
 	         	steps-steps_before_dividend,
 	         	tmp_dividend_times,
          		tmp_dividend_amounts);

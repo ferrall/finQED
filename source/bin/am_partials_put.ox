@@ -1,13 +1,5 @@
-#include "oxstd.h"
-#include "../../include/bin.h"
 
 option_price_partials_american_put_binomial(
-						 S,  		// spot prices
-						 X,  		// Exercise prices,
-						 r,     	// interest rate
-						 sigma, 	// volatility
-						 time,  	// time to maturity
-						 steps, 	// steps in binomial
 						delta, 	//  out: partial wrt S
 						gamma, 	//  out: second prt wrt S
 						theta, 	// out: partial wrt time
@@ -55,10 +47,10 @@ option_price_partials_american_put_binomial(
     theta[0] = (f21-f00) / (2*delta_t);
     decl diff = 0.02;
     decl tmp_sigma = sigma+diff;
-    decl tmp_prices = option_price_put_american_binomial(S,X,r,tmp_sigma,time,steps);
+    decl tmp_prices = option_price_put_american_binomial(S, r, tmp_sigma, time, steps, dividend_times, dividend_amounts);
     vega[0] = (tmp_prices-f00)/diff;
     diff = 0.05;
     decl tmp_r = r+diff;
-    tmp_prices = option_price_put_american_binomial(S,X,tmp_r,sigma,time,steps);
+    tmp_prices = option_price_put_american_binomial(S, tmp_r, sigma, time, steps, dividend_times, dividend_amounts);
     rho[0] = (tmp_prices-f00)/diff;
 }
