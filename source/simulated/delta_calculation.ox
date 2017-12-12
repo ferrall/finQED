@@ -1,9 +1,17 @@
 #include <oxstd.h>
-
+/** Option delta: the first derivative of the call price with respect to the underlying security.
+    Delta represents the change in the option's price when the underlying asset's price increases by 1.
+    Assume the option price formula c=f(S;X,r,sigma,t).
+	Then estimated delta=(f(S+q)-f(S))/q    (where q is a small quantity)
+	Here, this function shows the progress of estimating option delta using simulation.
+	Explanations of variables: S:Stock Price   X:Strike Price    r:Interest rate     sigma: Volatility
+	                           time:Time to final date     no_sims:Number of simulations
+	Some duplicate info is omitted.	
+**/
 option_price_delta_european_simulated(
     S,X,r,sigma,time,no_sims,corp){
-    decl R = (r - 0.5 * sqr(sigma)) * time;
-    decl SD = sigma * sqrt(time);
+    decl R,SD;
+	parameters_calculation1(r,sigma,time,&R,&SD);
     decl q = S * 0.001;	/** Here, q means a small quantity relative to S.
 	                        0.001 can be substituted by 0.01, 0.0001 or other similar small number, which only affect the accuracy of delta.
 	                    **/

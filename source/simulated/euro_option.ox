@@ -1,4 +1,17 @@
 ﻿#include <oxstd.h>
+/**  What does funvtion 'option_price_european_simulated' do? It's a simple use of Monte Carlo Simulation to value the European option
+	 1) Explanations of variables
+	    S:  Stock Price
+	    X:  Strike Price
+	    r:  Interest rate
+	    sigma: Volatility
+	    time:  Time to final date
+	    no_sims: Number of simulations
+	 2)	Assumption: underlying asset's return is normally distributed
+	 3) Implication of 2 :if the underlying asset's return is normally distributed, the price of the asset is log-normally distributed.
+	 The differece between call option and put option: call option is the right to buy the asset at a certain price in the future, while put option is the right to sell.
+	 So it is easy to understand, on the final date, for call option, its value is the asset price minus strike price;	 for put option, its value is the strike price minus asset price.
+**/
 option_price_euro_simulated(S, X, r, sigma, time, no_sims, corp)
 {
 	decl R,SD;
