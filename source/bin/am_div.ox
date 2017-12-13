@@ -5,25 +5,25 @@
  binomial formula starting at that point to calculate the value of the live
  option, and compare that to the value of exercising now.
 */
-option_price_call_american_discrete_dividends_binomial(S, time, steps, dividend_times, dividend_amounts)
+option_price_american_discrete_dividends_binomial(option, S, time, steps, dividend_times, dividend_amounts)
 {
     decl no_dividends = sizerc(dividend_times);
-    if (no_dividends == 0)               // just take the regular binomial
-       return option_price_call_american_binomial(S, r, sigma, time, steps, dividend_times, dividend_amounts);
-	
-    decl steps_before_dividend = int(dividend_times[0]/time*steps);
-
-    decl R;           				// interest rate for each step
-    decl Rinv;                      // inverse of interest rate
-    decl u;   						// up movement
-    decl uu;						// square of up movement
-    decl d;							// inverse of up movement
-    decl p_up;						// up probability
-    decl p_down;					// down probability
+    decl R;           							// interest rate for each step
+    decl Rinv;                      			// inverse of interest rate
+    decl u;   									// up movement
+    decl uu;									// square of up movement
+    decl d;										// inverse of up movement
+    decl p_up;									// up probability
+    decl p_down;								// down probability
 
 	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
 
+	if (no_dividends == 0)               // just take the regular binomial
+       return option_price_american_binomial(option, S, r, sigma, time, steps, dividend_times, dividend_amounts);
+	
+    decl steps_before_dividend = int(dividend_times[0]/time*steps);
 	decl dividend_amount = dividend_amounts[0];
+	
 	// temporaries with one less dividend
     decl tmp_dividend_amounts, tmp_dividend_times;
 	if (no_dividends > 1)
@@ -36,12 +36,12 @@ option_price_call_american_discrete_dividends_binomial(S, time, steps, dividend_
 	decl prices = constant(uu, steps_before_dividend + 1, 1);
 	prices[0] = S * pow(d, steps_before_dividend);
 	prices = cumprod(prices)';
-	decl call_values = zeros(1,steps_before_dividend+1);
+	decl values = zeros(1,steps_before_dividend+1);
 
 	for (decl i=0; i<=steps_before_dividend; ++i)
 	{
         decl value_alive
-      		= option_price_call_american_discrete_dividends_binomial(
+      		= option_price_american_discrete_dividends_binomial(option, 
 	         	prices[i]-dividend_amount,
 	         	time-dividend_times[0], // time after first dividend
 	         	steps-steps_before_dividend,
@@ -50,13 +50,16 @@ option_price_call_american_discrete_dividends_binomial(S, time, steps, dividend_
         // what is the value of keeping the option alive?  Found recursively,
         // with one less dividend, the stock price is current value
         // less the dividend.
-        call_values[i] = max(value_alive,prices[i]-X);  // compare to exercising now
+       	if (option == 0) values[i] = max(value_alive,prices[i]-X);  // compare to exercising now
+		if (option == 1) values[i] = max(value_alive,X-prices[i]);  // compare to exercising now
     }
+	
     for (decl step=steps_before_dividend-1; step>=0; --step)
 	{
-		call_values = (p_up * call_values[1 : step + 1] + p_down * call_values[ : step]) * Rinv;
+		values = (p_up * values[1 : step + 1] + p_down * values[ : step]) * Rinv;
 		prices = d * prices[1 : step + 1];
-		call_values = prices - X .> call_values .? prices - X .: call_values;
+		if (option == 0) values = prices - X .> values .? prices - X .: values;
+		if (option == 1) values = X - prices .> values .? X - prices .: values;
     }
-    return call_values[0];
+    return values[0];
 }

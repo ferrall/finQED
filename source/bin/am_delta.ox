@@ -1,5 +1,5 @@
 
-option_price_delta_american_call_binomial()
+option_price_delta_american_binomial(option)
 {
     decl R;           				// interest rate for each step
     decl Rinv;                      // inverse of interest rate
@@ -15,13 +15,18 @@ option_price_delta_american_call_binomial()
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
 	prices = cumprod(prices)';
-	decl call_values = prices - X .> 0 .? prices - X .: 0;
+
+	// calculate call or put value
+	decl values;
+	if (option == 0) values = prices - X .> 0 .? prices - X .: 0;
+	if (option == 1) values = X - prices .> 0 .? X - prices .: 0;
 
     for (decl step=steps-1; step>=1; --step)
 	{
-		call_values = (p_up * call_values[1 : step + 1] + p_down * call_values[ : step]) * Rinv;
+		values = (p_up * values[1 : step + 1] + p_down * values[ : step]) * Rinv;
 		prices = d * prices[1 : step + 1];
-		call_values = prices - X .> call_values .? prices - X .: call_values;
+		if (option == 0) values = prices - X .> values .? prices - X .: values;
+		if (option == 1) values = X - prices .> values .? X - prices .: values;
     }
-    return (call_values[1]-call_values[0])/(S*u-S*d);
+    return (values[1]-values[0])/(S*u-S*d);
 }

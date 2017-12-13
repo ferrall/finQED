@@ -1,5 +1,5 @@
 
-option_price_put_american_binomial(S, r, sigma, time, steps, dividend_times, dividend_amounts)
+option_price_american_binomial(option, S, r, sigma, time, steps, dividend_times, dividend_amounts)
 {
     decl R;           				// interest rate for each step
     decl Rinv;                      // inverse of interest rate
@@ -15,13 +15,18 @@ option_price_put_american_binomial(S, r, sigma, time, steps, dividend_times, div
 	decl prices = constant(uu, steps + 1, 1);
 	prices[0] = S * pow(d, steps);
 	prices = cumprod(prices)';
-	decl put_values = X - prices .> 0 .? X - prices .: 0;
 
-	for (decl step=steps-1; step>=0; --step)
+	// calculate call or put value
+	decl values;
+	if (option ==0) values = prices - X .> 0 .? prices - X .: 0;
+	if (option == 1) values = X - prices .> 0 .? X - prices .: 0; 
+
+    for (decl step=steps-1; step>=0; --step)
 	{
-		put_values = (p_up * put_values[1 : step + 1] + p_down * put_values[ : step]) * Rinv;
+		values = (p_up * values[1 : step + 1] + p_down * values[ : step]) * Rinv; 
 		prices = d * prices[1 : step + 1];
-		put_values = X - prices .> put_values .? X - prices .: put_values;
+		if (option == 0) values = prices - X .> values .? prices - X .: values;
+		if (option == 1) values = X - prices .> values .? X - prices .: values;
     }
-    return put_values[0];
+    return values[0];
 }
