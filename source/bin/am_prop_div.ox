@@ -5,7 +5,7 @@ option_price_american_proportional_dividends_binomial(option)
     decl no_dividends=sizerc(dividend_times);
 	
     if (no_dividends == 0)               // just take the regular binomial
-       return option_price_american_binomial(option, S, r, sigma, time, steps, dividend_times, dividend_amounts);
+       return option_price_american_binomial(option, LB, S, r, sigma, time, steps, dividend_times, dividend_amounts);
 
     decl R;           				// interest rate for each step
     decl Rinv;                      // inverse of interest rate

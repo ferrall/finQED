@@ -64,12 +64,12 @@ option_price_partials_american_binomial(option,
 	decl diff = 0.02;
     decl tmp_sigma = sigma+diff;
 	initial_calcs(r, tmp_sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-    decl tmp_prices = option_price_american_binomial(option, S, r, tmp_sigma, time, steps, dividend_times, dividend_amounts);
+    decl tmp_prices = option_price_american_binomial(option, LB, S, r, tmp_sigma, time, steps, dividend_times, dividend_amounts);
 	
     vega[0] = (tmp_prices-f00)/diff;
     diff = 0.05;
     decl tmp_r = r+diff;
 	initial_calcs(tmp_r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-    tmp_prices = option_price_american_binomial(option, S, tmp_r, sigma, time, steps, dividend_times, dividend_amounts);
+    tmp_prices = option_price_american_binomial(option, LB, S, tmp_r, sigma, time, steps, dividend_times, dividend_amounts);
     rho[0] = (tmp_prices-f00)/diff;
 }

@@ -7,4 +7,5 @@
 #include "am_prop_div.ox"
 #include "eur.ox"
 #include "initial_calcs.ox"
+#include "values_calc.ox"
 #include "set_parameters.ox"
