@@ -3,64 +3,50 @@
 #include "../source/simulated/euro_option.ox"
 #include "../source/simulated/delta_calculation.ox"
 
+decl S0=100.0,X0=100.0,r0=0.1,sigma0=0.25,time0=1,no_sims0=50000;  //global variables
 
 
-simulate_parameters(S,X,r,sigma,time,no_sims)
+simulate_parameters(S,X,r,sigma,time,no_sims)  // read current values
 {
-    S[0]        = 100.0;
-    X[0]        = 100.0;
-    r[0]        = 0.1;
-    sigma[0]    = 0.25;
-    time[0]     = 1.0;
-    no_sims[0]  = 50000;
-}	 // easy to adjust initial parameters
+    S[0]        = S0;
+    X[0]        = X0;
+    r[0]        = r0;
+    sigma[0]    = sigma0;
+    time[0]     = time0;
+    no_sims[0]  = no_sims0;
+}	
 
 simulate_pricing()
 {
-	println("Given current underlying price = 100, Strike Price = 100, interest rate = 10%, volatility = 0.25, time to maturity = 1, number of simulations = 50000")  ;
 	println("START testing Monte Carlo option pricing");
-	decl S1,X1,r1,sigma1,time1,no_sims1;
-    simulate_parameters(&S1,&X1,&r1,&sigma1,&time1,&no_sims1);
-	decl S        = S1;		 
-    decl X        = X1;
-    decl r        = r1;
-    decl sigma    = sigma1;
-    decl time     = time1;
-    decl no_sims  = no_sims1;	  
+	decl S,X,r,sigma,time,no_sims;
+    simulate_parameters(&S,&X,&r,&sigma,&time,&no_sims);
+	println("Given stock price:  ",S,"    strike price:  ",X,"      interest rate:  ",r*100,"%","     volatility:  ",sigma*100,"%","     time to maturity:  ",time," year       simulation times:  ",no_sims)  ;
     println("1)call ");
     println("   black scholes price = ",
 		option_price_call_black_scholes(S,X,r,sigma,time));
 	println("   simulated = ",
 	   option_price_euro_simulated(S, X, r, sigma, time, no_sims, 0));	
-	   //option_price_call_european_simulated(S,X,r,sigma,time,no_sims));
     println("2)put  ");
     println("   black scholes price = ",
 		option_price_put_black_scholes(S,X,r,sigma,time));
     println("   simulated = ",
 	  option_price_euro_simulated(S, X, r, sigma, time, no_sims, 1));
-	   //option_price_put_european_simulated(S,X,r,sigma,time,no_sims));
     println("DONE testing MC pricing ");
 }
 simulate_deltas()
 {
     println("START testing estimating deltas of simulated prices");
-   	decl S2,X2,r2,sigma2,time2,no_sims2;
-    simulate_parameters(&S2,&X2,&r2,&sigma2,&time2,&no_sims2);
-	decl S        = S2;		 
-    decl X        = X2;
-    decl r        = r2;
-    decl sigma    = sigma2;
-    decl time     = time2;
-    decl no_sims  = no_sims2;
+ 	decl S,X,r,sigma,time,no_sims;
+    simulate_parameters(&S,&X,&r,&sigma,&time,&no_sims);
+	println("Given stock price:  ",S,"    strike price:  ",X,"      interest rate:  ",r*100,"%","     volatility:  ",sigma*100,"%","     time to maturity:  ",time," year       simulation times:  ",no_sims)   ;
     println(" call: bs= ",
     	option_price_delta_call_black_scholes(S,X,r,sigma,time),
         " sim= ",
-        //option_price_delta_call_european_simulated(S,X,r,sigma,time,no_sims));
 		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,0));
     println(" put: bs= ",
     	option_price_delta_put_black_scholes(S,X,r,sigma,time),
       	" sim= ",
-   		//option_price_delta_put_european_simulated(S,X,r,sigma,time,no_sims));
 		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,1));
   	println("DONE testing estimating deltas");
 }
@@ -68,14 +54,9 @@ simulate_deltas()
 simulate_general()
 {
 	println("START testing general simulations ");
-   	decl S3,X3,r3,sigma3,time3,no_sims3;
-    simulate_parameters(&S3,&X3,&r3,&sigma3,&time3,&no_sims3);
-	decl S        = S3;		 
-    decl X        = X3;
-    decl r        = r3;
-    decl sigma    = sigma3;
-    decl time     = time3;
-    decl no_sims  = no_sims3;	
+	decl S,X,r,sigma,time,no_sims;
+    simulate_parameters(&S,&X,&r,&sigma,&time,&no_sims);
+    println("Given stock price:  ",S,"    strike price:  ",X,"      interest rate:  ",r*100,"%","     volatility:  ",sigma*100,"%","     time to maturity:  ",time," year       simulation times:  ",no_sims)   ;
 	println(" Black Scholes call price ",
 	    option_price_call_black_scholes(S,X,r,sigma,time),
 	    "   to be compared to ");
@@ -91,16 +72,14 @@ simulate_general()
 	
 	no_sims = 500;
 	decl no_steps = 300;
-	
+	println("ATTENTION: change parameters  simulation times = 500, number of steps = 300");
 	println(" simulated arithmetic average ",
 	    " S= ",  S, " r= ", r, " price=",
 	    derivative_price_european_simulated1(S,r,sigma,time,
-			payoff_arithmetic_average, no_steps,no_sims));
-	
+			payoff_arithmetic_average, no_steps,no_sims));	
 	println(" simulated geometric average ",
 	    derivative_price_european_simulated1(S,r,sigma,time,
-			payoff_geometric_average, no_steps,no_sims));
-	
+			payoff_geometric_average, no_steps,no_sims));	
 	println(" simulated geometric average, control variates ",
 	    derivative_price_european_simulated_control_variate(S,r,sigma,time,
 			payoff_geometric_average, no_steps,no_sims));
@@ -113,12 +92,56 @@ simulate_general()
 	println("DONE testing general simulations ");
 }
 
+simulate_change_parameters(){
+  println("Do you wanna change some parameters and test again? yes please enter 1, no please enter 0");
+  decl a;
+  scan("Enter you choice: %g", &a);
+  if (a==1){
+  println("which parameter do you wanna change?\n","0 stock price     1 strike price     2 interest rate      3 volatility     4 time to maturity    5 number of simulations") ;
+  decl x;
+  scan("Enter you choice: %g", &x);
+  switch(x){
+        case 0:
+            println("what's the current stock price?");
+			scan("Enter: %g", &S0);
+            break;
+        case 1:
+            println("what's the strike price?");
+			scan("Enter: %g", &X0);
+            break;
+		case 2:
+            println("what's the interest rate?(number<1,please)");
+			scan("Enter: %g", &r0);
+            break;
+		case 3:
+            println("what's the volatility?(number<1,please)");
+			scan("Enter: %g", &sigma0);
+            break;
+		case 4:
+            println("what's the left time to maturity?(1 means 1 year)");
+			scan("Enter: %g", &time0);
+            break;
+		case 5:
+            println("How many simulations do you wanna have?");
+			scan("Enter: %g", &no_sims0);
+            break;
+        default:
+            println("That's not a choice option, so sorry...");
+            break;
+        }
+  print("Done changeing parameters, the current parameters is ....\n",
+  "stock price:  ",S0,"    strike price:  ",X0,"      interest rate:  ",r0*100,"%","     volatility:  ",sigma0*100,"%","     time to maturity:  ",time0," year       simulation times:  ",no_sims0)   ;
+  }
+  else println("that's okay");
+}
+
 simulate_menu (){
 	decl m = new Menu("Simulation",FALSE);
 	m->add(				 
   		{"Pricing ",simulate_pricing},
   		{"Deltas ",simulate_deltas},
-  		{"General",simulate_general}
+  		{"General",simulate_general},
+		{"Change parameters",simulate_change_parameters}
 		);
 	return m;
     }
