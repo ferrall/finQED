@@ -19,10 +19,12 @@ option_price_american_discrete_dividends_binomial(option, S, time, steps, divide
 	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
 
 	if (no_dividends == 0)               // just take the regular binomial
+	//	return option_price_american_binomial(option, S, r, sigma, time, steps, dividend_times, dividend_amounts);
 	{
-		decl LB = 0;
-		decl values = values_calc(Rinv, u, uu, d, p_up, p_down, &values, option, LB);
-		return values[0];
+	decl LB = 0;
+	decl prices;
+	decl values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+	return values[0];
 	}
 	
     decl steps_before_dividend = int(dividend_times[0]/time*steps);

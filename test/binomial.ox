@@ -14,7 +14,6 @@ binomial_pricing()
     decl dividend_amounts = <2.5,2.5>;
 
 	decl option = <0, 1>;	// if option == 0, return call value; if option == 1, return put value
-	decl LB = <0, 1>; 		// LB == 0 for regular american call or put, LB == 1 for American delta call or put
 
 	set_parameters(S, X, r, sigma, time, steps, dividend_times, dividend_yields, dividend_amounts);
 	
@@ -23,8 +22,8 @@ binomial_pricing()
 	println(" put: ", option_price_european_binomial(option[1]) );
 	
     println(" american ");
-    println(" call: ", option_price_american_binomial(option[0], LB[0], S, r, sigma, time, steps, dividend_times, dividend_amounts) );
-    println(" put: ", option_price_american_binomial(option[1], LB[0], S, r, sigma, time, steps, dividend_times, dividend_amounts) );
+    println(" call: ", option_price_american_binomial(option[0]) );
+    println(" put: ", option_price_american_binomial(option[1]) );
 
     println("Proportional dividends ");
     println(" american call, dividends=3%, 3%, price= ",
@@ -50,14 +49,13 @@ binomial_partials()
     decl steps=100;
 	
 	decl option = <0, 1>;	// if option == 0, return call value; if option == 1, return put value
-	decl LB = <0, 1>; 		// LB == 0 for regular american call or put, LB == 1 for American delta call or put
 
 	set_parameters(S, X, r, sigma, time, steps, 0, 0, 0);
 	
 	println(" american call delta = ",
-		option_price_delta_american_binomial(option[0], LB[1]) );
+		option_price_delta_american_binomial(option[0]) );
     println(" american put delta = ",
-		option_price_delta_american_binomial(option[1], LB[1]) );
+		option_price_delta_american_binomial(option[1]) );
 		
     decl delta, gamma, theta, vega, rho;
 	

@@ -6,7 +6,7 @@ option_price_partials_american_binomial(option,
 						vega,  		//  out: partial wrt sigma
 						rho)   		// out: partial wrt r
 {
-    decl delta_t =(time/steps);
+    decl delta_t = (time/steps);
     decl R;           				// interest rate for each step
     decl Rinv;                      // inverse of interest rate
     decl u;   						// up movement
@@ -14,12 +14,13 @@ option_price_partials_american_binomial(option,
     decl d;							// inverse of up movement
     decl p_up;						// up probability
     decl p_down;					// down probability
-
+	
 	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
 
 	decl LB = 2;
-	decl values = values_calc(Rinv, u, uu, d, p_up, p_down, &values, option, LB);
-
+	decl prices;
+	decl values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+	
     decl f22 = values[2];
     decl f21 = values[1];
     decl f20 = values[0];
@@ -48,15 +49,18 @@ option_price_partials_american_binomial(option,
     gamma[0] = ( (f22-f21)/(S*(uu-1)) - (f21-f20)/(S*(1-d*d)) ) / h;
     theta[0] = (f21-f00) / (2*delta_t);
 
+	LB = 0;
 	decl diff = 0.02;
     decl tmp_sigma = sigma+diff;
 	initial_calcs(r, tmp_sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-    decl tmp_prices = option_price_american_binomial(option, LB, S, r, tmp_sigma, time, steps, dividend_times, dividend_amounts);
-	
-    vega[0] = (tmp_prices-f00)/diff;
+	values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+	decl tmp_prices = values[0];
+	vega[0] = (tmp_prices-f00)/diff;
+
     diff = 0.05;
     decl tmp_r = r+diff;
 	initial_calcs(tmp_r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-    tmp_prices = option_price_american_binomial(option, LB, S, tmp_r, sigma, time, steps, dividend_times, dividend_amounts);
+	values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+    tmp_prices = values[0];
     rho[0] = (tmp_prices-f00)/diff;
 }
