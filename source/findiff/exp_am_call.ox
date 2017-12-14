@@ -1,9 +1,12 @@
 #include <oxstd.h>
 
-option_price_call_american_finite_diff_explicit(S,X,r,sigma,time,no_S_steps,no_t_steps) {
+option_price_call_american_finite_diff_explicit(S, X, r, sigma, time, no_S_steps, no_t_steps) {
    decl sigma_sqr = sigma*sigma;
-   decl m,M=no_S_steps;           // need M = no_S_steps to be even:
-   if (idiv(no_S_steps,2)==1) { M=no_S_steps+1; } else { M=no_S_steps; }
+   decl m, M=no_S_steps;           // need M = no_S_steps to be even:
+   if (idiv(no_S_steps,2)==1) {
+       M=no_S_steps+1; }
+   else {
+       M=no_S_steps; }
    decl delta_S = 2.0*S/M;
    decl S_values = zeros(1,M+1);
    for (m=0;m<=M;m++) { S_values[m] = m*delta_S; }
@@ -26,12 +29,21 @@ option_price_call_american_finite_diff_explicit(S,X,r,sigma,time,no_S_steps,no_t
    for (decl t=N-1;t>=0;--t) {
       f[0]=0;
       for (decl m=1;m<M;++m) {
-	 f[m]=a[m]*f_next[m-1]+b[m]*f_next[m]+c[m]*f_next[m+1];
-	 f[m] = max(f[m],S_values[m]-X);  // check for exercise
-      }
+	     f[m]=a[m]*f_next[m-1]+b[m]*f_next[m]+c[m]*f_next[m+1];
+	     f[m] = max(f[m],S_values[m]-X);  // check for exercise
+      } 
+		  
       f[M] = S_values[M]-X;
-      for (m=0;m<=M;++m) { f_next[m] = f[m]; }
+      for (m=0;m<=M;++m) {
+	      f_next[m] = f[m];
+		  println(f_next[m]);
+	  }
    }
    decl C = f[M/2];
    return C;
+}
+
+
+main(){
+    println(option_price_call_american_finite_diff_explicit(50.0,50.0,0.1,0.4,0.4167,20,11));
 }

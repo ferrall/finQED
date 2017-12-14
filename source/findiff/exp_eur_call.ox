@@ -37,3 +37,7 @@ option_price_call_european_finite_diff_explicit(S,X,r,sigma,time,no_S_steps,no_t
     }
     return f[M/2];
 }
+
+main(){
+    println(option_price_call_european_finite_diff_explicit(50.0,50.0,0.1,0.4,0.4167,20,11));
+}
