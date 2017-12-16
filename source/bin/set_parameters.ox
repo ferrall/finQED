@@ -1,4 +1,6 @@
-
+/*
+This function declares the below parameters, which are shared by the value functions.
+*/
 set_parameters(inS, inX, inr, insigma, intime, insteps, individend_times, individend_yields, individend_amounts)
 {
 	S = inS;

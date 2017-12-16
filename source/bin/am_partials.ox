@@ -1,4 +1,6 @@
-
+/*
+Calculates the partials of an american call or put option using binomical approximation.
+*/
 option_price_partials_american_binomial(option,
 						delta, 		//  out: partial wrt S
 						gamma, 		//  out: second prt wrt S
@@ -15,11 +17,11 @@ option_price_partials_american_binomial(option,
     decl p_up;						// up probability
     decl p_down;					// down probability
 	
-	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
+	initial_calcs(r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);  // call function to calculate above identifiers
 
-	decl LB = 2;
+	decl LB = 2;		// set the lowerbound of the for loop in values_calc function
 	decl prices;
-	decl values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+	decl values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices); // calculate call or put values
 	
     decl f22 = values[2];
     decl f21 = values[1];
@@ -49,18 +51,18 @@ option_price_partials_american_binomial(option,
     gamma[0] = ( (f22-f21)/(S*(uu-1)) - (f21-f20)/(S*(1-d*d)) ) / h;
     theta[0] = (f21-f00) / (2*delta_t);
 
-	LB = 0;
+	LB = 0;				// set the lowerbound of the for loop in values_calc function
 	decl diff = 0.02;
     decl tmp_sigma = sigma+diff;
-	initial_calcs(r, tmp_sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-	values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+	initial_calcs(r, tmp_sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);					 // redo initial calculations with tmp_sigma instead of sigma 
+	values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices); // calculate regular binomial using tmp_sigma instead of sigma
 	decl tmp_prices = values[0];
 	vega[0] = (tmp_prices-f00)/diff;
 
     diff = 0.05;
     decl tmp_r = r+diff;
-	initial_calcs(tmp_r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);
-	values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);
+	initial_calcs(tmp_r, sigma, &R, &Rinv, &u, &uu, &d, &p_up, &p_down);					  // redo initial calculations with tmp_r instead of r
+	values = values_calc(option, LB, S, steps, Rinv, uu, d, p_up, p_down, &values, &prices);  // calculate regular binomial using tmp_r instead of r
     tmp_prices = values[0];
     rho[0] = (tmp_prices-f00)/diff;
 }
