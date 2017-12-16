@@ -31,3 +31,38 @@ bonds()
 
     println("DONE testing bonds ");
 }
+
+bonds_portfolio()
+{
+    println("START creating bonds portfolio with particular duration");
+    decl coupon_times = <1,2>;
+    decl coupon_amounts = <10,10>;
+ 	decl principal_times = <2>;
+  	decl principal_amounts = <100>;
+    decl r = 0.1;
+	decl cashflow_times = <1,2>;
+    decl cashflows = <10,110>;
+	print("duration of bond A ", bonds_duration(cashflow_times, cashflows,r));
+	decl coupon_timesb = <1,2,3,4,5>;
+    decl coupon_amountsb = <10,10,10,10,10>;
+ 	decl principal_timesb = <5>;
+  	decl principal_amountsb = <100>;
+	decl cashflow_timesb = <1,2,3,4,5>;
+    decl cashflowsb = <10,10,10,10,100>;
+	print("duration of bond B ", bonds_duration(cashflow_timesb, cashflowsb,r));
+	decl portfolio_duration=3;
+	decl duration_of_portfolio=3;
+	print("calculate_portfolio_with_particular_durantion",calculate_portfolio_with_particular_durantion(bonds_duration(cashflow_times, cashflows,r),bonds_duration(cashflow_timesb, cashflowsb,r),duration_of_portfolio));
+ }
+
+ bonds_menu(){
+    return {
+    {"Run All",0},
+	{"bonds",bonds},
+	{"Portfolio",bonds_portfolio}
+    };
+    }
+
+
+
+	

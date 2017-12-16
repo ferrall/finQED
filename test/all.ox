@@ -25,7 +25,7 @@ main_menu() {
                     {"binomial (sub options)",          0,      binomial_menu},
                     {"Black-Scholes",                   0,      blackscholes_menu },
                     {"Bond Options (sub options)",      0,      bondopt_menu},
-                    {"Bonds",                           bonds,  0 },
+                    {"Bonds",                           0,      bonds_menu},
                     {"Cash Flow",                       cash_flow, 0 },
                     {"Currency",                        currency, 0 },
                     {"Exotics",                         exotics,  0 },
