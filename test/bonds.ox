@@ -50,7 +50,6 @@ bonds_portfolio()
 	decl cashflow_timesb = <1,2,3,4,5>;
     decl cashflowsb = <10,10,10,10,100>;
 	print("duration of bond B ", bonds_duration(cashflow_timesb, cashflowsb,r));
-	decl portfolio_duration=3;
 	decl duration_of_portfolio=3;
 	print("calculate_portfolio_with_particular_durantion",calculate_portfolio_with_particular_durantion(bonds_duration(cashflow_times, cashflows,r),bonds_duration(cashflow_timesb, cashflowsb,r),duration_of_portfolio));
  }
