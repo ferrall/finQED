@@ -1,28 +1,13 @@
-Output of Bonds
+Output of bonds
 ---------------------------
 START testing bond algoritms 
- price = 98.7257
- price, cashflows case = 98.7257
+ price = 99.1088
+ price, cashflows case = 99.1088
  price, discrete compounding = 100
- duration, simple 2.73377
- duration, Macaulay 2.72996
- duration, Modified 24.8524
+ duration, simple 1.9087
+ duration, Macaulay 1.90787
+ duration, Modified 1.71955
  yield = 0.11
- convexity = 752.794
+ convexity = 362.067
 DONE testing bonds 
 ... finished.
-[00] Run All (excluding sub-options)
-[01] alt-formula: merton
-[02] quadratic approximation
-[03] binomial (sub options)
-[04] Black-Scholes
-[05] Bond Options (sub options)
-[06] Bonds
-[07] Cash Flow
-[08] Currency
-[09] Exotics
-[10] Finite Differences
-[11] Futures
-[12] Mean-Variance Portfolio
-[13] Simulation (sub options)
-[14] Term Structure (sub options)

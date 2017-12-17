@@ -42,16 +42,21 @@ bonds_portfolio()
     decl r = 0.1;
 	decl cashflow_times = <1,2>;
     decl cashflows = <10,110>;
-	print("duration of bond A ", bonds_duration(cashflow_times, cashflows,r));
+	println(" duration of bond A ",
+	    bonds_duration(cashflow_times, cashflows,r));
 	decl coupon_timesb = <1,2,3,4,5>;
     decl coupon_amountsb = <10,10,10,10,10>;
  	decl principal_timesb = <5>;
   	decl principal_amountsb = <100>;
 	decl cashflow_timesb = <1,2,3,4,5>;
     decl cashflowsb = <10,10,10,10,100>;
-	print("duration of bond B ", bonds_duration(cashflow_timesb, cashflowsb,r));
+	println(" duration of bond B ",
+	    bonds_duration(cashflow_timesb, cashflowsb,r));
 	decl duration_of_portfolio=3;
-	print("calculate_portfolio_with_particular_durantion",calculate_portfolio_with_particular_durantion(bonds_duration(cashflow_times, cashflows,r),bonds_duration(cashflow_timesb, cashflowsb,r),duration_of_portfolio));
+	println(" portfolio_duration",
+	    duration_of_portfolio);
+	println(" calculate_portfolio_with_particular_durantion",
+	    calculate_portfolio_with_particular_durantion(bonds_duration(cashflow_times, cashflows,r),bonds_duration(cashflow_timesb, cashflowsb,r),duration_of_portfolio));
  }
 
  bonds_menu(){
