@@ -13,8 +13,6 @@ simulate_price_sequence(S, 		// current value of underlying
 			     		 no_steps)  // number of steps
 {
 	decl R,SD;
-	decl delta_t = time1 / no_steps1;
-    R = (r1 - 0.5 * sqr(sigma1)) * delta_t;
-    SD = sigma1 * sqrt(delta_t);
+	parameters_calculation_step(r,sigma,time,no_steps,&R,&SD);
 	return S * cumprod(exp(R + SD * rann(no_steps, 1)))'; /** cumprod returns a 1 by no_steps matrix here with the cumulated autoregressive product**/
 }

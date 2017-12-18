@@ -26,12 +26,12 @@ simulate_pricing()
     println("   black scholes price = ",
 		option_price_call_black_scholes(S,X,r,sigma,time));
 	println("   simulated = ",
-	   option_price_euro_simulated(S, X, r, sigma, time, no_sims, 0));	
+	   option_price_euro_simulated(S, X, r, sigma, time, no_sims, "call"));	
     println("2)put  ");
     println("   black scholes price = ",
 		option_price_put_black_scholes(S,X,r,sigma,time));
     println("   simulated = ",
-	  option_price_euro_simulated(S, X, r, sigma, time, no_sims, 1));
+	  option_price_euro_simulated(S, X, r, sigma, time, no_sims, "put"));
     println("DONE testing MC pricing ");
 }
 simulate_deltas()
@@ -43,11 +43,11 @@ simulate_deltas()
     println(" call: bs= ",
     	option_price_delta_call_black_scholes(S,X,r,sigma,time),
         " sim= ",
-		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,0));
+		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,"call"));
     println(" put: bs= ",
     	option_price_delta_put_black_scholes(S,X,r,sigma,time),
       	" sim= ",
-		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,1));
+		option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,"put"));
   	println("DONE testing estimating deltas");
 }
 

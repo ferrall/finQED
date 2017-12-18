@@ -1,5 +1,5 @@
-﻿parameters_calcultaion1(r,sigma,time);
-parameters_calculation2(r,sigma,time,no_steps);
+parameters_calcultaion1(r,sigma,time,R,SD);
+parameters_calculation_step(r1,sigma1,time1,no_steps1,R1,SD1);
 pvoption(r,time,no_sims,sum_payoffs);
 option_price_euro_simulated(S, X, r, sigma, time, no_sims, corp);
 option_price_delta_european_simulated(S,X,r,sigma,time,no_sims,corp) ;
@@ -15,10 +15,3 @@ payoff_min(prices);
 payoff_max(prices);
 payoff_geometric_average(prices);
 payoff_arithmetic_average(prices);
-
-/*struct option_price_european_simulated {
-    decl S,X,no_sims,r,time；  
-    call(S,X,no_sims,r,time);
-    put(S,X,no_sims,r,time);
-    }
-*/
