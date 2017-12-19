@@ -1,23 +1,55 @@
-#import "finQED"
+#include <oxstd.oxh>
+#include <Option.ox>
+#include <Option_EuropeanBlack.ox>
+#include <Option_AmericanBinom.ox>
+main();
+main(){
+	decl callOpt1, putOpt1, callOpt2, putOpt2;
+	
+    callOpt1 = new Option_EuropeanBlack();
+	putOpt1 = new Option_EuropeanBlack();
+	callOpt2 = new Option_AmericanBinom();
+	putOpt2 = new Option_AmericanBinom();
 
-futures()
-{
-  	println("START testing futures options etc ");
-  	decl S=100;
-  	decl F=100;
-    decl X=100;
-    decl r =0.1;
-    decl sigma = 0.2;
-    decl time = 1;
-  	println(" futures price ", futures_price(S,r,time));
-    println(" european call price = ",
-		futures_option_price_call_european_black(F,X,r,sigma,time));
-    println(" european put price = ",
-		futures_option_price_put_european_black(F,X,r,sigma,time));
-    decl nosteps = 100;
-    println(" call price, binomial american = ",
-    	futures_option_price_call_american_binomial(F,X,r,sigma,time,nosteps));
-    println(" put price, binomial american = ",
-    	futures_option_price_put_american_binomial(F,X,r,sigma,time,nosteps));
-  	println("DONE testing futures ");
+	callOpt1.setStockPrice(100);
+	callOpt1.setStrike(100);
+	callOpt1.setR(0.1);
+	callOpt1.setSTD(0.2);
+	callOpt1.setTime(1);
+
+	putOpt1.setStockPrice(100);
+	putOpt1.setStrike(100);
+	putOpt1.setR(0.1);
+	putOpt1.setSTD(0.2);
+	putOpt1.setTime(1);
+
+	callOpt2.setStockPrice(100);
+	callOpt2.setStrike(100);
+	callOpt2.setR(0.1);
+	callOpt2.setSTD(0.2);
+	callOpt2.setTime(1);
+	callOpt2.setN(100);
+
+	putOpt2.setStockPrice(100);
+	putOpt2.setStrike(100);
+	putOpt2.setR(0.1);
+	putOpt2.setSTD(0.2);
+	putOpt2.setTime(1);
+	putOpt2.setN(100);
+
+	callOpt1.callPrice();
+	putOpt1.putPrice();
+	callOpt2.callPrice();
+	putOpt2.putPrice();
+	
+	println("European Black Scholes Call Price = ", callOpt1.getPrice());
+	println("European Black Scholes Put Price = ", putOpt1.getPrice());
+	println("American Binomial Call Price = ", callOpt2.getPrice());
+	println("American Binomial Put Price = ", putOpt2.getPrice());
+
+	print(callOpt1.toString());
+	print(putOpt1.toString());
+	print(callOpt2.toString());
+	print(putOpt1.toString());
+	
 }
