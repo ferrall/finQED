@@ -91,10 +91,7 @@ simulate_general()	//try more simulations
 	println(" simulated min ",
 	    derivative_price_european_simulated1(S,r,sigma,time,
 			payoff_min,no_steps,no_sims));
-	println("simulated American call  ",option_price_am_simulated(S, X, r, sigma, time, no_sims, no_steps, "call"));
-	println("binomial tree American call  ",option_price_call_american_binomial(S, X, r,sigma, time, no_steps));
-		println("simulated American put  ",option_price_am_simulated(S, X, r, sigma, time, no_sims, no_steps, "put"));
-	println("binomial tree American put  ",option_price_put_american_binomial(S, X, r,sigma, time, no_steps));
+			
 	println("DONE testing general simulations ");
 }
 
