@@ -2,11 +2,13 @@
 #include "../source/simulated/parameters_calculation.ox"
 #include "../source/simulated/euro_option.ox"
 #include "../source/simulated/delta_calculation.ox"
+#include "../source/simulated/am_option.ox"
 
 decl S0=100.0,X0=100.0,r0=0.1,sigma0=0.25,time0=1,no_sims0=50000;  //global variables
 
 
-simulate_parameters(S,X,r,sigma,time,no_sims)  // read current values
+simulate_parameters(S,X,r,sigma,time,no_sims)
+// function to read current values, not necessary but clear
 {
     S[0]        = S0;
     X[0]        = X0;
@@ -16,7 +18,7 @@ simulate_parameters(S,X,r,sigma,time,no_sims)  // read current values
     no_sims[0]  = no_sims0;
 }	
 
-simulate_pricing()
+simulate_pricing()	// function to test Black Scholes option simulation
 {
 	println("START testing Monte Carlo option pricing");
 	decl S,X,r,sigma,time,no_sims;
@@ -34,7 +36,7 @@ simulate_pricing()
 	  option_price_euro_simulated(S, X, r, sigma, time, no_sims, "put"));
     println("DONE testing MC pricing ");
 }
-simulate_deltas()
+simulate_deltas()  // test the estimation of deltas
 {
     println("START testing estimating deltas of simulated prices");
  	decl S,X,r,sigma,time,no_sims;
@@ -51,7 +53,7 @@ simulate_deltas()
   	println("DONE testing estimating deltas");
 }
 
-simulate_general()
+simulate_general()	//try more simulations
 {
 	println("START testing general simulations ");
 	decl S,X,r,sigma,time,no_sims;
@@ -71,8 +73,8 @@ simulate_general()
 			payoff_european_put,no_sims));
 	
 	no_sims = 500;
-	decl no_steps = 300;
-	println("ATTENTION: change parameters  simulation times = 500, number of steps = 300");
+	decl no_steps = 360;
+	println("ATTENTION: change parameters  simulation times = 500, number of steps = 360");
 	println(" simulated arithmetic average ",
 	    " S= ",  S, " r= ", r, " price=",
 	    derivative_price_european_simulated1(S,r,sigma,time,
@@ -89,10 +91,14 @@ simulate_general()
 	println(" simulated min ",
 	    derivative_price_european_simulated1(S,r,sigma,time,
 			payoff_min,no_steps,no_sims));
+	println("simulated American call  ",option_price_am_simulated(S, X, r, sigma, time, no_sims, no_steps, "call"));
+	println("binomial tree American call  ",option_price_call_american_binomial(S, X, r,sigma, time, no_steps));
+		println("simulated American put  ",option_price_am_simulated(S, X, r, sigma, time, no_sims, no_steps, "put"));
+	println("binomial tree American put  ",option_price_put_american_binomial(S, X, r,sigma, time, no_steps));
 	println("DONE testing general simulations ");
 }
 
-simulate_change_parameters(){
+simulate_change_parameters(){	// a new function to change the parameters of simulations
   println("Do you wanna change some parameters and test again? yes please enter 1, no please enter 0");
   decl a;
   scan("Enter you choice: %g", &a);

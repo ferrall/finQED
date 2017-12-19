@@ -15,3 +15,4 @@ payoff_min(prices);
 payoff_max(prices);
 payoff_geometric_average(prices);
 payoff_arithmetic_average(prices);
+option_price_am_simulated(S, X, r, sigma, time, no_sims, no_steps, corp);
