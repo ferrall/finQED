@@ -1,0 +1,17 @@
+Output of binomial:Pricing
+---------------------------
+START testing Binomial Pricing
+ european 
+ call: 14.9505
+ put: 5.43425
+ american 
+ call: 14.9505
+ put: 6.54691
+Proportional dividends 
+ american call, dividends=3%, 3%, price= 11.4385
+ american put, dividends=3%, 3%, price= 8.37137
+Discrete dividends: 
+ american call, dividends 2.5 2.5, price= 12.0233
+ american put, dividends 2.5 2.5, price= 8.11801
+DONE testing binomial pricing 
+... finished.
