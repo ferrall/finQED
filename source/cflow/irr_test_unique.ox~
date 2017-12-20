@@ -14,7 +14,7 @@ are false. The column of this vector is summed to determine the number of sign c
 @param v Column of cash flows or column of cumulative cash flow
 @returns Number of sign changes in the cash flow or cumulative cash flow
 **/
-count_sign_changes(v)
+count_sign_changes(v) 
 {
 	decl c = sizerc(v);	
 	if (c <= 1)

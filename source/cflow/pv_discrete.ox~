@@ -6,7 +6,7 @@
 /**
 Calculate the present value of cash flows using discrete compounding. For discounting at discrete intervals for example, annually, semiannually. 
 
-PV = FV0 + FV1/(1+r) + FV2/(1+r)^2 + ... + FVn/(1+r)^n
+$$PV = FV0 + FV1/(1+r) + FV2/(1+r)^2 + ... + FVn/(1+r)^n$$
 
 Where r is the interest rate and n is the number of periods.  
 

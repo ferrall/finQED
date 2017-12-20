@@ -97,6 +97,7 @@ single_irr()
     if (f2*f1>0.0)	return CFLOW_ERROR;
 	
     decl f = cash_flow_pv(x1), rtb, dx=0;
+	
     if (f<0.0) //Define bottom bracket which equals either x1 or x2 depending on the slope of the function.
 	{	rtb = x1;	dx = x2-x1;
 	}
