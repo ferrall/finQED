@@ -1,16 +1,9 @@
-option_price_call_american_finite_diff_explicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_put_american_finite_diff_explicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_call_european_finite_diff_explicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_put_european_finite_diff_explicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_call_american_finite_diff_implicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_put_american_finite_diff_implicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_call_european_finite_diff_implicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
-option_price_put_european_finite_diff_implicit(S, X, r, sigma, time,no_S_steps,
-no_t_steps);
+//findiff functions
+option_price_call_finite_diff_explicit(S, X, r, sigma, time, no_S_steps, no_t_steps, type);
+option_price_put_finite_diff_explicit(S, X, r, sigma, time, no_S_steps, no_t_steps, type);
+option_price_put_finite_diff_implicit(S, X, r, sigma, time, no_S_steps, no_t_steps, type);
+option_price_call_finite_diff_implicit(S, X, r, sigma, time, no_S_steps, no_t_steps, type);
+
+//new function
+setup_parameters(S, X, r, sigma, time, no_S_steps, no_t_steps, sigma_sqr, M, delta_S, N, delta_t);
+

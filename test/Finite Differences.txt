@@ -1,0 +1,17 @@
+Output of Finite Differences
+---------------------------
+START testing finite differences
+Call prices:
+ Black scholes call price = 6.11679
+ Explicit FD American call price = 6.07151
+ Implicit FD American call price = 5.94792
+
+Put prices:
+ Black scholes put price = 4.0761
+ Explicit Euro put price = 4.03667
+ Implicit Euro put price = 3.91756
+ Explicit American put price = 4.25085
+ Implicit American put price = 4.07236
+
+DONE testing finite differences 
+... finished.
