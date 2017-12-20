@@ -10,3 +10,4 @@ bond_option_price_call_zero_black_scholes(B, X, r, sigma, time);
 bond_option_price_put_zero_black_scholes(B, X, r, sigma, time);
 bond_option_price_call_coupon_bond_black_scholes(B, X, r, sigma, time,coupon_times, coupon_amounts);
 bond_option_price_put_coupon_bond_black_scholes(B, X, r, sigma, time,coupon_times, coupon_amounts);
+calculate_portfolio_with_particular_durantion(duration_bond_A,duration_bond_B,duration_of_portfolio);

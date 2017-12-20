@@ -34,6 +34,7 @@
 #include "bondopt/put_coupon_bs.ox"
 #include "bondopt/put_vasicek.ox"
 #include "bonds/convexity.ox"
+#include "bonds/calculate_portfolio_with_particular_durantion.ox"
 #include "bonds/duration.ox"
 #include "bonds/duration_macaulay.ox"
 #include "bonds/duration_modified.ox"
