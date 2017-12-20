@@ -1,4 +1,4 @@
-Output of Bonds
+Output of bonds
 ---------------------------
 START testing bond algoritms 
  price = 99.1088
@@ -6,7 +6,7 @@ START testing bond algoritms
  price, discrete compounding = 100
  duration, simple 1.9087
  duration, Macaulay 1.90787
- duration, Modified 17.3518
+ duration, Modified 1.71955
  yield = 0.11
  convexity = 362.067
 DONE testing bonds 
