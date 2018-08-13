@@ -1,12 +1,19 @@
-decl cflow_amounts, cflow_times;
-setflow(inflow,times);  
-cash_flow_pv(r); 
-cash_flow_pv_discrete(r);  
-cash_flow_irr(); 
-single_irr(); 
-multiple_roots(); 
-modified_irr(financerate, reinvestmentrate); 
+#include "finQED.h"
+
 count_sign_changes(v); 	
-cash_flow_unique_irr();
-breakeven(); 
-print_summary(finrate, investrate);
+
+struct cflow : fq {
+    static const decl CFLOW_ERROR = .NaN;	
+    const decl
+        Nv,
+        amounts,
+        times;
+    cflow(inflow,times);
+    pv(r);
+    irr();
+    multiple_roots();
+    modified_irr(financerate, reinvestmentrate);
+    unique_irr();
+    breakeven();
+    print_summary(finrate, investrate);
+    }
