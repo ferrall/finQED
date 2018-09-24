@@ -3,9 +3,12 @@
 #include "oxprob.h"
 #import <solveqp>
 
+enum{UNDEFINED=-1}
+
 const decl FNR_ACCURACY=1.0e-6;
 const decl FNR_MAXIT   =   500;
 
+/*
 #include "cflow.h"
 #include "blackscholes.h"
 #include "findiff.h"
@@ -35,3 +38,4 @@ bond_option_price_call_zero_american_rendleman_bartter(X, option_maturity, S, M,
 
 bond_option_price_call_zero_vasicek(X, r,option_time_to_maturity,bond_time_to_maturity, a, b, sigma);
 bond_option_price_put_zero_vasicek(X, r, option_time_to_maturity,bond_time_to_maturity, a, b, sigma);
+*/

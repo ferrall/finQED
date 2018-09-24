@@ -10,7 +10,7 @@ count_sign_changes(v) {
 	if (c <= 1) return 0;
 	decl leadneg = v[1 : ].<0;	//Vector excluding first entry
 	decl curneg = v[: c-2].<0; //Vector excluding last entry
-	return int(sumc( (leadneg .* (1-v2)) + ((1-leadneg).*curneg) ));
+	return int(sumc( (leadneg .* (1-curneg)) + ((1-leadneg).*curneg) ));
     }
 	
 /** Create a new investment stream to analyze.
@@ -28,16 +28,14 @@ to input times/periods in chronological order.
 setflow(<-100,500>,<0,5>)
 																															
 **/
-cflow::cflow(inflow, times = 0) {																							
-     inputok = FALSE;
+cflow::cflow(inflow, intimes) {																							
 	 amounts = inflow;
      Nv = rows(amounts);
-	 this.times = (isint(times))
-	 	               ?  range(0,Nv-1)'; //Periods start at zero	
-	                   :  times;
-	 if (rows(cflow_times) != Nv)
+	 times = (isint(intimes))
+	 	               ?  range(0,Nv-1)' //Periods start at zero	
+	                   :  intimes;
+	 if (rows(times) != Nv)
 	   oxrunerror("Cash flows and periods do not match.");
-    inputok = TRUE;
     }
 
 /**
@@ -47,9 +45,9 @@ To determine the IRR of the cash flow, it is first determined if there is a uniq
 **/
 cflow::irr() {
  if(unique_irr()==1)
- return single_irr();
+    return single_irr();
  else
- return multiple_roots();
+    return multiple_roots();
 }
 
 /** Calculate the present value of cash flows using continuous discounting.
@@ -83,14 +81,14 @@ If the maximum number of iterations is reached 500, returns error.
 
 @comments The present value of cash flows is calculated using continuous discounting.
 **/
-cflow::single_irr()	 {
+cflow::single_irr() {
 
 	decl x1 = 0.0, x2 = 0.2; //Denotes inital guesses of interest rates (r values)
-    decl f1 = pv(x1), f2 = pv(x2), i;
+    decl f1 = pv(x1), f2 = pv(x2), i, succ;
 
     i = 0;
     succ = FALSE;
-    do
+    do {
 		if (f1*f2 < 0.0) {
             succ = TRUE;
 			break;
@@ -99,8 +97,8 @@ cflow::single_irr()	 {
 		 	f1 = pv(x1+=1.6*(x1-x2));
 		else
 			f2 = pv(x2+=1.6*(x2-x1));
-        ++i
-        } while(++i<FNR_MAXIT);
+        ++i;
+        } while (i<FNR_MAXIT);
 
     if (!succ) return CFLOW_ERROR;
 	
@@ -119,7 +117,7 @@ cflow::single_irr()	 {
 		f_mid = pv(x_mid);
 		if (f_mid<=0.0)
 			rtb = x_mid; //rtb only changes to x_mid only if the cash flows evaluated at x_mid are less negative.
-        } while ( (fabs(f_mid)>FNR_ACCURACY) && (fabs(dx)>FNR_ACCURACY) )
+        } while ( (fabs(f_mid)>FNR_ACCURACY) && (fabs(dx)>FNR_ACCURACY) );
 	return x_mid;
     }
 
@@ -198,7 +196,7 @@ cflow::breakeven() {
 	if (cumulativecash < 0)
 	   return UNDEFINED;  //"Does not break even";
 	else
-	   return cflow_times[count-1];
+	   return times[count-1];
 
 }
 
